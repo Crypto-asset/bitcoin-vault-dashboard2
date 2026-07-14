@@ -1,6 +1,7 @@
 /* ===================================
    Bitcoin Vault Dashboard
    Milestone 4 Final Style Sheet
+   WhatsApp Button Edition
 =================================== */
 
 
@@ -81,6 +82,8 @@ pageEntrance 1s ease;
 
 
 
+
+
 @keyframes pageEntrance {
 
 
@@ -103,6 +106,7 @@ transform:translateY(0);
 
 
 }
+
 
 
 
@@ -194,6 +198,8 @@ transform:translateY(-10vh);
 
 
 
+
+
 /* ================================
    Dashboard
 ================================ */
@@ -275,6 +281,8 @@ box-shadow:
 
 
 
+
+
 .logo-area {
 
 
@@ -288,6 +296,10 @@ gap:15px;
 
 
 }
+
+
+
+
 
 
 
@@ -352,6 +364,8 @@ font-size:28px;
 
 
 
+
+
 .header p {
 
 
@@ -362,6 +376,8 @@ font-size:14px;
 
 
 }
+
+
 
 
 
@@ -411,6 +427,9 @@ font-weight:600;
 
 
 }
+
+
+
 
 
 
@@ -477,6 +496,7 @@ gap:25px;
 
 
 
+
 .card {
 
 
@@ -517,6 +537,8 @@ cardEntrance .8s ease forwards;
 
 
 
+
+
 @keyframes cardEntrance {
 
 
@@ -544,6 +566,8 @@ transform:translateY(0);
 
 
 
+
+
 .card:hover {
 
 
@@ -566,15 +590,6 @@ rgba(255,183,0,.5);
 
 
 }
-
-
-
-
-
-
-
-
-
 /* ================================
    Balance
 ================================ */
@@ -676,6 +691,9 @@ gap:15px;
 margin-top:25px;
 
 
+flex-wrap:wrap;
+
+
 }
 
 
@@ -711,6 +729,7 @@ transition:.3s;
 
 
 
+
 .btn-primary {
 
 
@@ -729,29 +748,6 @@ color:white;
 
 }
 
-
-
-
-
-.btn-secondary {
-
-
-background:
-
-
-rgba(255,255,255,.12);
-
-
-color:white;
-
-
-border:
-
-
-1px solid rgba(255,255,255,.2);
-
-
-}
 
 
 
@@ -782,13 +778,19 @@ color:white;
 text-decoration:none;
 
 
-display:inline-flex;
+display:flex;
 
 
 align-items:center;
 
 
 justify-content:center;
+
+
+min-width:150px;
+
+
+flex:1;
 
 
 border:
@@ -798,8 +800,6 @@ border:
 
 
 }
-
-
 
 
 
@@ -816,8 +816,6 @@ box-shadow:
 
 
 }
-
-
 
 
 
@@ -858,6 +856,8 @@ font-size:20px;
 
 
 
+
+
 .stats {
 
 
@@ -871,6 +871,8 @@ gap:18px;
 
 
 }
+
+
 
 
 
@@ -969,6 +971,8 @@ overflow:hidden;
 
 
 
+
+
 .btc-fill {
 
 
@@ -1001,15 +1005,6 @@ linear-gradient(
 
 
 }
-
-
-
-
-
-
-
-
-
 /* ================================
    Floating Bitcoin
 ================================ */
@@ -1073,7 +1068,10 @@ animation:
 floatBitcoin 4s infinite;
 
 
+
 }
+
+
 
 
 
@@ -1084,7 +1082,9 @@ floatBitcoin 4s infinite;
 
 50% {
 
+
 transform:translateY(-20px);
+
 
 }
 
@@ -1143,7 +1143,10 @@ rgba(20,20,20,.95);
 transition:.4s;
 
 
+
 }
+
+
 
 
 
@@ -1162,6 +1165,7 @@ translateX(-50%)
 
 
 translateY(0);
+
 
 
 }
@@ -1203,7 +1207,9 @@ border-top:
 1px solid rgba(255,255,255,.1);
 
 
+
 }
+
 
 
 
@@ -1222,9 +1228,14 @@ border-top:
 
 body {
 
+
 padding:15px;
 
+
 }
+
+
+
 
 
 
@@ -1245,6 +1256,8 @@ gap:20px;
 
 
 
+
+
 .balance {
 
 
@@ -1252,6 +1265,8 @@ font-size:40px;
 
 
 }
+
+
 
 
 
@@ -1267,6 +1282,8 @@ flex-direction:column;
 
 
 
+
+
 .btn {
 
 
@@ -1274,6 +1291,20 @@ width:100%;
 
 
 }
+
+
+
+
+
+
+.btn-whatsapp {
+
+
+width:100%;
+
+
+}
+
 
 
 
@@ -1295,6 +1326,7 @@ right:20px;
 
 
 bottom:20px;
+
 
 
 }
