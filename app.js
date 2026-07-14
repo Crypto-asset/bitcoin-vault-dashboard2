@@ -1,52 +1,61 @@
 /* ===================================
    Bitcoin Vault Dashboard
-   Milestone 2
+   Milestone 2 JavaScript
 =================================== */
+
 
 
 /* ================================
    Animated BTC Counter
 ================================ */
 
-const balanceElement =
-document.querySelector(".balance");
+
+const balanceElement = document.querySelector(".balance");
 
 
-if(balanceElement){
-
-    const target = 41.87;
-
-    let current = 0;
+if (balanceElement) {
 
 
-    const counter =
-    setInterval(()=>{
+    const targetBalance = 41.87;
+
+    let currentBalance = 0;
 
 
-        current += 0.15;
+    const counter = setInterval(() => {
 
 
-        if(current >= target){
+        currentBalance += 0.25;
 
-            current = target;
+
+        if (currentBalance >= targetBalance) {
+
+
+            currentBalance = targetBalance;
 
             clearInterval(counter);
+
 
         }
 
 
-        balanceElement.innerHTML =
-        current.toFixed(2);
+
+        balanceElement.textContent =
+            currentBalance.toFixed(2);
 
 
-    },30);
+
+    }, 40);
+
 
 }
 
 
 
+
+
+
 /* ================================
-   Wallet Copy + Toast
+   Copy Wallet + Toast
 ================================ */
 
 
@@ -63,102 +72,116 @@ document.querySelector("#toast");
 
 
 
-function showToast(message){
 
-    if(!toast) return;
-
-
-    toast.textContent =
-    message;
+function showToast(message) {
 
 
-    toast.classList.add(
-        "show"
-    );
+    if (!toast) return;
 
 
-    setTimeout(()=>{
-
-        toast.classList.remove(
-            "show"
-        );
+    toast.textContent = message;
 
 
-    },2500);
+    toast.classList.add("show");
+
+
+
+    setTimeout(() => {
+
+
+        toast.classList.remove("show");
+
+
+    }, 2500);
+
+
+}
+
+
+
+
+
+if (copyButton && walletAddress) {
+
+
+
+    copyButton.addEventListener(
+        "click",
+        async () => {
+
+
+
+        try {
+
+
+            await navigator.clipboard.writeText(
+                walletAddress.textContent
+            );
+
+
+
+            copyButton.textContent =
+                "Copied ✓";
+
+
+
+            copyButton.style.background =
+                "#00c853";
+
+
+
+            showToast(
+                "Wallet address copied"
+            );
+
+
+
+            setTimeout(() => {
+
+
+                copyButton.textContent =
+                    "Copy Wallet";
+
+
+                copyButton.style.background =
+                    "";
+
+
+            },2000);
+
+
+
+        }
+
+
+        catch(error) {
+
+
+            showToast(
+                "Copy failed"
+            );
+
+
+        }
+
+
+
+    });
+
+
 
 }
 
 
 
-if(copyButton && walletAddress){
-
-
-copyButton.addEventListener(
-"click",
-async ()=>{
-
-
-try{
-
-
-await navigator.clipboard.writeText(
-walletAddress.textContent
-);
-
-
-
-copyButton.textContent =
-"Copied ✓";
-
-
-copyButton.style.background =
-"#00c853";
-
-
-
-showToast(
-"Wallet address copied"
-);
-
-
-
-setTimeout(()=>{
-
-
-copyButton.textContent =
-"Copy Wallet";
-
-
-copyButton.style.background =
-"";
-
-
-},2000);
-
-
-
-}
-
-catch(error){
-
-showToast(
-"Copy failed"
-);
-
-}
-
-
-
-});
-
-}
 
 
 
 
 /* ================================
-   Card Hover Glow
+   Dynamic Card Glow Effect
 ================================ */
+
 
 
 const cards =
@@ -166,37 +189,63 @@ document.querySelectorAll(".card");
 
 
 
-cards.forEach(card=>{
-
-
-card.addEventListener(
-"mousemove",
-(e)=>{
-
-
-const rect =
-card.getBoundingClientRect();
+cards.forEach(card => {
 
 
 
-const x =
-e.clientX - rect.left;
+    card.addEventListener(
+        "mousemove",
+        (event) => {
 
 
 
-const y =
-e.clientY - rect.top;
+        const rect =
+        card.getBoundingClientRect();
 
 
 
-card.style.background =
-`
-radial-gradient(
-circle at ${x}px ${y}px,
-rgba(255,183,0,.18),
-rgba(255,255,255,.08)
-)
-`;
+        const x =
+        event.clientX - rect.left;
+
+
+
+        const y =
+        event.clientY - rect.top;
+
+
+
+        card.style.background = `
+
+        radial-gradient(
+
+            circle at ${x}px ${y}px,
+
+            rgba(255,183,0,0.20),
+
+            rgba(255,255,255,0.08)
+
+        )
+
+        `;
+
+
+
+    });
+
+
+
+
+
+    card.addEventListener(
+        "mouseleave",
+        () => {
+
+
+        card.style.background =
+        "rgba(255,255,255,0.08)";
+
+
+    });
 
 
 
@@ -204,16 +253,56 @@ rgba(255,255,255,.08)
 
 
 
-card.addEventListener(
-"mouseleave",
+
+
+
+/* ================================
+   Blockchain Status Animation
+================================ */
+
+
+const status =
+document.querySelector(".status");
+
+
+
+if(status){
+
+
+    setInterval(() => {
+
+
+        status.style.opacity =
+        status.style.opacity === "0.7"
+        ? "1"
+        : "0.7";
+
+
+
+    },2000);
+
+
+}
+
+
+
+
+
+
+
+/* ================================
+   Page Loaded Effect
+================================ */
+
+
+window.addEventListener(
+"load",
 ()=>{
 
 
-card.style.background =
-"rgba(255,255,255,.08)";
-
-
-});
+    document.body.classList.add(
+        "loaded"
+    );
 
 
 });
