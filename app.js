@@ -1,133 +1,219 @@
 /* ===================================
    Bitcoin Vault Dashboard
-   Milestone 1 - Basic Interactions
+   Milestone 2
 =================================== */
 
 
-// ================================
-// Wallet Copy Function
-// ================================
+/* ================================
+   Animated BTC Counter
+================================ */
 
-const copyButton = document.querySelector("#copyWallet");
-const walletAddress = document.querySelector("#walletAddress");
-
-
-if (copyButton && walletAddress) {
-
-    copyButton.addEventListener("click", async () => {
-
-        try {
-
-            await navigator.clipboard.writeText(
-                walletAddress.textContent
-            );
+const balanceElement =
+document.querySelector(".balance");
 
 
-            const originalText = copyButton.textContent;
+if(balanceElement){
+
+    const target = 41.87;
+
+    let current = 0;
 
 
-            copyButton.textContent = "Copied ✓";
+    const counter =
+    setInterval(()=>{
 
 
-            copyButton.classList.add("copied");
+        current += 0.15;
 
 
-            setTimeout(() => {
+        if(current >= target){
 
-                copyButton.textContent = originalText;
+            current = target;
 
-                copyButton.classList.remove("copied");
-
-            }, 2000);
-
-
-        } catch(error) {
-
-            console.error(
-                "Copy failed:",
-                error
-            );
+            clearInterval(counter);
 
         }
 
-    });
+
+        balanceElement.innerHTML =
+        current.toFixed(2);
+
+
+    },30);
 
 }
 
 
 
-// ================================
-// Blockchain Connection Status
-// ================================
-
-const statusBadge = document.querySelector(".status");
+/* ================================
+   Wallet Copy + Toast
+================================ */
 
 
-if(statusBadge){
+const copyButton =
+document.querySelector("#copyWallet");
 
-    statusBadge.addEventListener(
-        "click",
-        () => {
 
-            statusBadge.innerHTML = `
-                <span class="status-dot"></span>
-                Blockchain Connected
-            `;
+const walletAddress =
+document.querySelector("#walletAddress");
 
-        }
+
+const toast =
+document.querySelector("#toast");
+
+
+
+function showToast(message){
+
+    if(!toast) return;
+
+
+    toast.textContent =
+    message;
+
+
+    toast.classList.add(
+        "show"
     );
+
+
+    setTimeout(()=>{
+
+        toast.classList.remove(
+            "show"
+        );
+
+
+    },2500);
 
 }
 
 
 
-// ================================
-// Button Hover Enhancement
-// ================================
-
-const buttons = document.querySelectorAll(".btn");
+if(copyButton && walletAddress){
 
 
-buttons.forEach(button => {
+copyButton.addEventListener(
+"click",
+async ()=>{
 
 
-    button.addEventListener(
-        "mouseenter",
-        () => {
-
-            button.style.transform =
-            "translateY(-3px)";
-
-        }
-    );
+try{
 
 
-    button.addEventListener(
-        "mouseleave",
-        () => {
+await navigator.clipboard.writeText(
+walletAddress.textContent
+);
 
-            button.style.transform =
-            "translateY(0)";
 
-        }
-    );
+
+copyButton.textContent =
+"Copied ✓";
+
+
+copyButton.style.background =
+"#00c853";
+
+
+
+showToast(
+"Wallet address copied"
+);
+
+
+
+setTimeout(()=>{
+
+
+copyButton.textContent =
+"Copy Wallet";
+
+
+copyButton.style.background =
+"";
+
+
+},2000);
+
+
+
+}
+
+catch(error){
+
+showToast(
+"Copy failed"
+);
+
+}
+
+
+
+});
+
+}
+
+
+
+
+/* ================================
+   Card Hover Glow
+================================ */
+
+
+const cards =
+document.querySelectorAll(".card");
+
+
+
+cards.forEach(card=>{
+
+
+card.addEventListener(
+"mousemove",
+(e)=>{
+
+
+const rect =
+card.getBoundingClientRect();
+
+
+
+const x =
+e.clientX - rect.left;
+
+
+
+const y =
+e.clientY - rect.top;
+
+
+
+card.style.background =
+`
+radial-gradient(
+circle at ${x}px ${y}px,
+rgba(255,183,0,.18),
+rgba(255,255,255,.08)
+)
+`;
+
 
 
 });
 
 
 
-// ================================
-// Dashboard Loading Effect
-// ================================
+card.addEventListener(
+"mouseleave",
+()=>{
 
-window.addEventListener(
-    "load",
-    () => {
 
-        document.body.classList.add(
-            "loaded"
-        );
+card.style.background =
+"rgba(255,255,255,.08)";
 
-    }
-);
+
+});
+
+
+});
