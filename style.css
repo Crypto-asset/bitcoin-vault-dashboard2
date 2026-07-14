@@ -1,6 +1,6 @@
 /* ===================================
    Bitcoin Vault Dashboard
-   Milestone 3 Complete Style Sheet
+   Milestone 4 Final Style Sheet
 =================================== */
 
 
@@ -8,18 +8,26 @@
 
 
 
-/* ================================
-   RESET
-================================ */
-
-
 * {
 
 margin:0;
+
 padding:0;
+
 box-sizing:border-box;
 
 }
+
+
+
+
+html {
+
+scroll-behavior:smooth;
+
+}
+
+
 
 
 
@@ -28,24 +36,32 @@ body {
 
 min-height:100vh;
 
+
 font-family:"Inter",sans-serif;
+
 
 color:white;
 
 
+overflow-x:hidden;
+
+
 background:
+
 
 radial-gradient(
 circle at top left,
-#1d3557,
+#203a63,
 transparent 40%
 ),
 
+
 radial-gradient(
 circle at bottom right,
-#4b2700,
+#5a3000,
 transparent 35%
 ),
+
 
 #050505;
 
@@ -53,280 +69,10 @@ transparent 35%
 padding:30px;
 
 
-}
-
-
-
-
-
-/* ================================
-   CONTAINER
-================================ */
-
-
-.dashboard {
-
-
-max-width:1200px;
-
-width:100%;
-
-margin:auto;
-
-
-}
-
-
-
-
-
-
-/* ================================
-   HEADER
-================================ */
-
-
-.header {
-
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-
-padding:25px 30px;
-
-
-margin-bottom:30px;
-
-
-background:
-
-rgba(255,255,255,.08);
-
-
-border:
-
-1px solid rgba(255,255,255,.15);
-
-
-border-radius:22px;
-
-
-backdrop-filter:blur(20px);
-
-
-}
-
-
-
-
-
-.logo-area {
-
-
-display:flex;
-
-align-items:center;
-
-gap:15px;
-
-
-}
-
-
-
-.logo {
-
-
-width:55px;
-
-height:55px;
-
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-
-border-radius:50%;
-
-
-font-size:32px;
-
-font-weight:800;
-
-
-background:
-
-linear-gradient(
-135deg,
-#ffb700,
-#ff7a00
-);
-
-
-}
-
-
-
-
-
-.header h1 {
-
-
-font-size:26px;
-
-
-}
-
-
-
-.header p {
-
-
-color:#bbb;
-
-font-size:14px;
-
-
-}
-
-
-
-
-
-
-
-/* ================================
-   STATUS
-================================ */
-
-
-.status {
-
-
-display:flex;
-
-align-items:center;
-
-gap:10px;
-
-
-padding:10px 18px;
-
-
-border-radius:50px;
-
-
-background:
-
-rgba(0,255,140,.12);
-
-
-border:
-
-1px solid rgba(0,255,140,.3);
-
-
-color:#00ff8c;
-
-
-font-weight:600;
-
-
-}
-
-
-
-
-.status-dot {
-
-
-width:10px;
-
-height:10px;
-
-
-background:#00ff8c;
-
-
-border-radius:50%;
-
-
-}
-
-
-
-
-
-
-
-/* ================================
-   GRID
-================================ */
-
-
-.cards {
-
-
-display:grid;
-
-
-grid-template-columns:
-
-repeat(
-auto-fit,
-minmax(280px,1fr)
-);
-
-
-gap:25px;
-
-
-}
-
-
-
-
-
-/* ================================
-   GLASS CARDS
-================================ */
-
-
-.card {
-
-
-padding:30px;
-
-
-border-radius:25px;
-
-
-background:
-
-rgba(255,255,255,.08);
-
-
-border:
-
-1px solid rgba(255,255,255,.15);
-
-
-backdrop-filter:blur(20px);
-
-
-transition:.3s;
-
-
 animation:
 
-cardShow .8s ease forwards;
+pageEntrance 1s ease;
+
 
 
 }
@@ -335,33 +81,14 @@ cardShow .8s ease forwards;
 
 
 
-.card:hover {
-
-
-transform:translateY(-8px);
-
-
-box-shadow:
-
-0 20px 50px
-
-rgba(255,183,0,.2);
-
-
-}
-
-
-
-
-
-@keyframes cardShow {
+@keyframes pageEntrance {
 
 
 from {
 
 opacity:0;
 
-transform:translateY(30px);
+transform:translateY(20px);
 
 }
 
@@ -384,7 +111,457 @@ transform:translateY(0);
 
 
 /* ================================
-   BALANCE
+   Particle Background
+================================ */
+
+
+#particles {
+
+
+position:fixed;
+
+
+inset:0;
+
+
+overflow:hidden;
+
+
+z-index:-1;
+
+
+}
+
+
+
+
+.particle {
+
+
+position:absolute;
+
+
+width:4px;
+
+
+height:4px;
+
+
+background:#ffb700;
+
+
+border-radius:50%;
+
+
+opacity:.5;
+
+
+animation:
+
+particleMove linear infinite;
+
+
+}
+
+
+
+
+
+@keyframes particleMove {
+
+
+from {
+
+transform:translateY(100vh);
+
+}
+
+
+to {
+
+transform:translateY(-10vh);
+
+}
+
+
+}
+
+
+
+
+
+
+
+/* ================================
+   Dashboard
+================================ */
+
+
+.dashboard {
+
+
+max-width:1200px;
+
+
+width:100%;
+
+
+margin:auto;
+
+
+}
+
+
+
+
+
+
+
+/* ================================
+   Header
+================================ */
+
+
+.header {
+
+
+display:flex;
+
+
+justify-content:space-between;
+
+
+align-items:center;
+
+
+padding:25px 30px;
+
+
+margin-bottom:30px;
+
+
+background:
+
+
+rgba(255,255,255,.08);
+
+
+border:
+
+
+1px solid rgba(255,255,255,.15);
+
+
+border-radius:25px;
+
+
+backdrop-filter:blur(25px);
+
+
+box-shadow:
+
+
+0 20px 50px rgba(0,0,0,.25);
+
+
+
+}
+
+
+
+
+
+.logo-area {
+
+
+display:flex;
+
+
+align-items:center;
+
+
+gap:15px;
+
+
+}
+
+
+
+.logo {
+
+
+width:60px;
+
+
+height:60px;
+
+
+display:flex;
+
+
+justify-content:center;
+
+
+align-items:center;
+
+
+border-radius:50%;
+
+
+font-size:35px;
+
+
+font-weight:800;
+
+
+background:
+
+
+linear-gradient(
+135deg,
+#ffb700,
+#ff7a00
+);
+
+
+box-shadow:
+
+
+0 0 40px rgba(255,183,0,.5);
+
+
+}
+
+
+
+
+
+
+.header h1 {
+
+
+font-size:28px;
+
+
+}
+
+
+
+.header p {
+
+
+color:#aaa;
+
+
+font-size:14px;
+
+
+}
+
+
+
+
+
+
+/* ================================
+   Status
+================================ */
+
+
+.status {
+
+
+display:flex;
+
+
+align-items:center;
+
+
+gap:10px;
+
+
+padding:12px 20px;
+
+
+border-radius:50px;
+
+
+background:
+
+
+rgba(0,255,140,.12);
+
+
+border:
+
+
+1px solid rgba(0,255,140,.3);
+
+
+color:#00ff8c;
+
+
+font-weight:600;
+
+
+}
+
+
+
+
+.status-dot {
+
+
+width:11px;
+
+
+height:11px;
+
+
+background:#00ff8c;
+
+
+border-radius:50%;
+
+
+box-shadow:
+
+
+0 0 15px #00ff8c;
+
+
+}
+
+
+
+
+
+
+
+/* ================================
+   Cards
+================================ */
+
+
+.cards {
+
+
+display:grid;
+
+
+grid-template-columns:
+
+
+repeat(
+auto-fit,
+minmax(280px,1fr)
+);
+
+
+gap:25px;
+
+
+}
+
+
+
+
+
+.card {
+
+
+padding:30px;
+
+
+border-radius:25px;
+
+
+background:
+
+
+rgba(255,255,255,.08);
+
+
+border:
+
+
+1px solid rgba(255,255,255,.15);
+
+
+backdrop-filter:blur(25px);
+
+
+transition:.35s;
+
+
+animation:
+
+
+cardEntrance .8s ease forwards;
+
+
+
+}
+
+
+
+@keyframes cardEntrance {
+
+
+from {
+
+opacity:0;
+
+transform:translateY(40px);
+
+}
+
+
+to {
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+
+}
+
+
+
+
+.card:hover {
+
+
+transform:
+
+
+translateY(-10px);
+
+
+box-shadow:
+
+
+0 25px 60px rgba(255,183,0,.25);
+
+
+border-color:
+
+
+rgba(255,183,0,.5);
+
+
+}
+
+
+
+
+
+
+
+/* ================================
+   Balance
 ================================ */
 
 
@@ -393,7 +570,6 @@ transform:translateY(0);
 
 color:#aaa;
 
-font-size:15px;
 
 margin-bottom:15px;
 
@@ -402,17 +578,21 @@ margin-bottom:15px;
 
 
 
+
 .balance {
 
 
-font-size:52px;
+font-size:55px;
+
 
 font-weight:800;
+
 
 color:#ffb700;
 
 
 }
+
 
 
 
@@ -430,44 +610,9 @@ font-size:18px;
 
 
 
-/* ================================
-   OWNER
-================================ */
-
-
-.owner {
-
-
-display:flex;
-
-flex-direction:column;
-
-justify-content:center;
-
-gap:12px;
-
-
-}
-
-
-
-.owner-name {
-
-
-font-size:28px;
-
-font-weight:700;
-
-
-}
-
-
-
-
-
 
 /* ================================
-   WALLET
+   Wallet
 ================================ */
 
 
@@ -480,21 +625,19 @@ margin-top:20px;
 padding:15px;
 
 
+border-radius:12px;
+
+
 background:
+
 
 rgba(0,0,0,.35);
 
 
-border-radius:12px;
-
-
-color:#ccc;
+color:#ddd;
 
 
 word-break:break-all;
-
-
-font-size:14px;
 
 
 }
@@ -503,19 +646,14 @@ font-size:14px;
 
 
 
-
-
-/* ================================
-   BUTTONS
-================================ */
-
-
 .buttons {
 
 
 display:flex;
 
+
 gap:15px;
+
 
 margin-top:25px;
 
@@ -528,10 +666,10 @@ margin-top:25px;
 .btn {
 
 
-padding:13px 22px;
+padding:14px 25px;
 
 
-border-radius:12px;
+border-radius:14px;
 
 
 border:none;
@@ -540,7 +678,7 @@ border:none;
 cursor:pointer;
 
 
-font-weight:600;
+font-weight:700;
 
 
 transition:.3s;
@@ -556,6 +694,7 @@ transition:.3s;
 
 background:
 
+
 linear-gradient(
 135deg,
 #ffb700,
@@ -570,12 +709,11 @@ color:white;
 
 
 
-
-
 .btn-secondary {
 
 
 background:
+
 
 rgba(255,255,255,.12);
 
@@ -585,6 +723,7 @@ color:white;
 
 border:
 
+
 1px solid rgba(255,255,255,.2);
 
 
@@ -592,12 +731,10 @@ border:
 
 
 
-
-
 .btn:hover {
 
 
-transform:translateY(-3px);
+transform:translateY(-4px);
 
 
 }
@@ -609,16 +746,17 @@ transform:translateY(-3px);
 
 
 /* ================================
-   STATISTICS
+   Statistics
 ================================ */
 
 
 .card h2 {
 
 
-font-size:20px;
-
 margin-bottom:20px;
+
+
+font-size:20px;
 
 
 }
@@ -630,7 +768,9 @@ margin-bottom:20px;
 
 display:flex;
 
+
 flex-direction:column;
+
 
 gap:18px;
 
@@ -639,10 +779,12 @@ gap:18px;
 
 
 
+
 .stats div {
 
 
 display:flex;
+
 
 justify-content:space-between;
 
@@ -651,6 +793,7 @@ padding-bottom:12px;
 
 
 border-bottom:
+
 
 1px solid rgba(255,255,255,.1);
 
@@ -682,7 +825,7 @@ color:#ffb700;
 .security {
 
 
-color:#00ff8c !important;
+color:#00ff8c!important;
 
 
 }
@@ -693,7 +836,7 @@ color:#00ff8c !important;
 
 
 /* ================================
-   ALLOCATION CHART
+   Chart
 ================================ */
 
 
@@ -703,10 +846,8 @@ color:#00ff8c !important;
 height:35px;
 
 
-width:100%;
-
-
 background:
+
 
 rgba(255,255,255,.1);
 
@@ -732,7 +873,9 @@ width:100%;
 
 display:flex;
 
+
 align-items:center;
+
 
 justify-content:center;
 
@@ -742,6 +885,7 @@ font-weight:700;
 
 background:
 
+
 linear-gradient(
 90deg,
 #ffb700,
@@ -749,33 +893,6 @@ linear-gradient(
 );
 
 
-animation:
-
-chartLoad 1.5s ease;
-
-
-}
-
-
-
-
-@keyframes chartLoad {
-
-
-from {
-
-width:0;
-
-}
-
-
-to {
-
-width:100%;
-
-}
-
-
 }
 
 
@@ -785,45 +902,7 @@ width:100%;
 
 
 /* ================================
-   SYSTEM STATUS
-================================ */
-
-
-.network span {
-
-
-color:#00ff8c;
-
-
-font-weight:700;
-
-
-}
-
-
-
-
-
-#syncTime {
-
-
-display:block;
-
-margin:15px 0;
-
-
-color:#ffb700;
-
-
-}
-
-
-
-
-
-
-/* ================================
-   FLOATING BITCOIN
+   Floating Bitcoin
 ================================ */
 
 
@@ -835,19 +914,23 @@ position:fixed;
 
 right:40px;
 
+
 bottom:40px;
 
 
-width:75px;
+width:80px;
 
-height:75px;
+
+height:80px;
 
 
 display:flex;
 
-align-items:center;
 
 justify-content:center;
+
+
+align-items:center;
 
 
 border-radius:50%;
@@ -855,10 +938,12 @@ border-radius:50%;
 
 font-size:45px;
 
+
 font-weight:800;
 
 
 background:
+
 
 linear-gradient(
 135deg,
@@ -869,12 +954,14 @@ linear-gradient(
 
 box-shadow:
 
-0 0 40px rgba(255,183,0,.5);
+
+0 0 50px rgba(255,183,0,.6);
 
 
 animation:
 
-float 4s infinite;
+
+floatBitcoin 4s infinite;
 
 
 }
@@ -882,7 +969,7 @@ float 4s infinite;
 
 
 
-@keyframes float {
+@keyframes floatBitcoin {
 
 
 50% {
@@ -901,7 +988,7 @@ transform:translateY(-20px);
 
 
 /* ================================
-   TOAST
+   Toast
 ================================ */
 
 
@@ -919,7 +1006,9 @@ left:50%;
 
 transform:
 
+
 translateX(-50%)
+
 
 translateY(100px);
 
@@ -935,14 +1024,14 @@ border-radius:50px;
 
 background:
 
-rgba(20,20,20,.9);
+
+rgba(20,20,20,.95);
 
 
 transition:.4s;
 
 
 }
-
 
 
 
@@ -955,7 +1044,9 @@ opacity:1;
 
 transform:
 
+
 translateX(-50%)
+
 
 translateY(0);
 
@@ -968,14 +1059,14 @@ translateY(0);
 
 
 /* ================================
-   FOOTER
+   Footer
 ================================ */
 
 
 .footer {
 
 
-margin-top:40px;
+margin-top:45px;
 
 
 padding:25px;
@@ -992,6 +1083,7 @@ font-size:14px;
 
 border-top:
 
+
 1px solid rgba(255,255,255,.1);
 
 
@@ -1001,22 +1093,9 @@ border-top:
 
 
 
-.footer p {
-
-
-margin:8px;
-
-
-}
-
-
-
-
-
-
 
 /* ================================
-   MOBILE
+   Mobile
 ================================ */
 
 
@@ -1036,7 +1115,9 @@ padding:15px;
 
 flex-direction:column;
 
+
 align-items:flex-start;
+
 
 gap:20px;
 
@@ -1080,6 +1161,7 @@ width:100%;
 
 width:60px;
 
+
 height:60px;
 
 
@@ -1087,6 +1169,7 @@ font-size:35px;
 
 
 right:20px;
+
 
 bottom:20px;
 
