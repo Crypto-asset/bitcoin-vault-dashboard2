@@ -1,26 +1,23 @@
 /* ===================================
    Bitcoin Vault Dashboard
-   Complete Style Sheet
-   Milestone 1 + Milestone 2
+   Milestone 3 Complete Style Sheet
 =================================== */
 
-
-/* Google Font */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 
 
 /* ================================
-   Global Reset
+   RESET
 ================================ */
 
 
 * {
 
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 
 }
 
@@ -29,31 +26,31 @@
 body {
 
 
-    min-height:100vh;
+min-height:100vh;
 
-    font-family:"Inter", sans-serif;
+font-family:"Inter",sans-serif;
 
-    color:white;
-
-
-    background:
-
-    radial-gradient(
-        circle at top left,
-        #1c3155,
-        transparent 40%
-    ),
-
-    radial-gradient(
-        circle at bottom right,
-        #4b2700,
-        transparent 35%
-    ),
-
-    #050505;
+color:white;
 
 
-    padding:30px;
+background:
+
+radial-gradient(
+circle at top left,
+#1d3557,
+transparent 40%
+),
+
+radial-gradient(
+circle at bottom right,
+#4b2700,
+transparent 35%
+),
+
+#050505;
+
+
+padding:30px;
 
 
 }
@@ -61,75 +58,80 @@ body {
 
 
 
+
 /* ================================
-   Dashboard
+   CONTAINER
 ================================ */
 
 
 .dashboard {
 
 
-    width:100%;
+max-width:1200px;
 
-    max-width:1200px;
+width:100%;
 
-    margin:auto;
+margin:auto;
 
 
 }
+
 
 
 
 
 
 /* ================================
-   Header
+   HEADER
 ================================ */
 
 
 .header {
 
 
-    display:flex;
+display:flex;
 
-    justify-content:space-between;
+justify-content:space-between;
 
-    align-items:center;
-
-
-    padding:25px 30px;
-
-    margin-bottom:30px;
+align-items:center;
 
 
-    background:
-
-    rgba(255,255,255,.08);
+padding:25px 30px;
 
 
-    border:
-
-    1px solid rgba(255,255,255,.15);
+margin-bottom:30px;
 
 
-    border-radius:22px;
+background:
+
+rgba(255,255,255,.08);
 
 
-    backdrop-filter:blur(20px);
+border:
+
+1px solid rgba(255,255,255,.15);
+
+
+border-radius:22px;
+
+
+backdrop-filter:blur(20px);
 
 
 }
 
 
 
+
+
 .logo-area {
 
 
-    display:flex;
+display:flex;
 
-    align-items:center;
+align-items:center;
 
-    gap:15px;
+gap:15px;
 
 
 }
@@ -139,33 +141,33 @@ body {
 .logo {
 
 
-    width:55px;
+width:55px;
 
-    height:55px;
-
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
+height:55px;
 
 
-    border-radius:50%;
+display:flex;
+
+align-items:center;
+
+justify-content:center;
 
 
-    background:
-
-    linear-gradient(
-        135deg,
-        #ffb700,
-        #ff7a00
-    );
+border-radius:50%;
 
 
-    font-size:32px;
+font-size:32px;
 
-    font-weight:800;
+font-weight:800;
+
+
+background:
+
+linear-gradient(
+135deg,
+#ffb700,
+#ff7a00
+);
 
 
 }
@@ -173,12 +175,11 @@ body {
 
 
 
+
 .header h1 {
 
 
-    font-size:26px;
-
-    font-weight:700;
+font-size:26px;
 
 
 }
@@ -188,9 +189,9 @@ body {
 .header p {
 
 
-    color:#bdbdbd;
+color:#bbb;
 
-    font-size:14px;
+font-size:14px;
 
 
 }
@@ -200,78 +201,91 @@ body {
 
 
 
+
 /* ================================
-   Blockchain Status
+   STATUS
 ================================ */
 
 
 .status {
 
 
-    display:flex;
+display:flex;
 
-    align-items:center;
+align-items:center;
 
-    gap:10px;
-
-
-    padding:10px 18px;
+gap:10px;
 
 
-    border-radius:50px;
+padding:10px 18px;
 
 
-    background:
-
-    rgba(0,255,140,.12);
+border-radius:50px;
 
 
-    border:
+background:
 
-    1px solid rgba(0,255,140,.3);
-
-
-    color:#00ff8c;
+rgba(0,255,140,.12);
 
 
-    font-size:14px;
+border:
 
-    font-weight:600;
+1px solid rgba(0,255,140,.3);
+
+
+color:#00ff8c;
+
+
+font-weight:600;
 
 
 }
+
 
 
 
 .status-dot {
 
 
-    width:10px;
+width:10px;
 
-    height:10px;
-
-
-    background:#00ff8c;
+height:10px;
 
 
-    border-radius:50%;
+background:#00ff8c;
 
 
-    animation:pulse 2s infinite;
+border-radius:50%;
 
 
 }
 
 
 
-@keyframes pulse {
 
 
-    50% {
 
-        opacity:.4;
 
-    }
+/* ================================
+   GRID
+================================ */
+
+
+.cards {
+
+
+display:grid;
+
+
+grid-template-columns:
+
+repeat(
+auto-fit,
+minmax(280px,1fr)
+);
+
+
+gap:25px;
 
 
 }
@@ -281,109 +295,38 @@ body {
 
 
 /* ================================
-   Cards
+   GLASS CARDS
 ================================ */
-
-
-.cards {
-
-
-    display:grid;
-
-
-    grid-template-columns:
-
-    repeat(
-        auto-fit,
-        minmax(280px,1fr)
-    );
-
-
-    gap:25px;
-
-
-}
-
-
 
 
 .card {
 
 
-    padding:30px;
+padding:30px;
 
 
-    border-radius:25px;
+border-radius:25px;
 
 
-    background:
+background:
 
-    rgba(255,255,255,.08);
-
-
-    border:
-
-    1px solid rgba(255,255,255,.15);
+rgba(255,255,255,.08);
 
 
-    backdrop-filter:blur(20px);
+border:
+
+1px solid rgba(255,255,255,.15);
 
 
-
-    opacity:0;
-
-
-    transform:translateY(30px);
+backdrop-filter:blur(20px);
 
 
-    animation:
-
-    cardReveal .8s forwards;
+transition:.3s;
 
 
-    transition:
+animation:
 
-    transform .3s ease,
-    box-shadow .3s ease;
-
-
-}
-
-
-
-.card:nth-child(1){
-
-    animation-delay:.2s;
-
-}
-
-
-.card:nth-child(2){
-
-    animation-delay:.4s;
-
-}
-
-
-.card:nth-child(3){
-
-    animation-delay:.6s;
-
-}
-
-
-
-
-@keyframes cardReveal {
-
-
-    to {
-
-        opacity:1;
-
-        transform:translateY(0);
-
-    }
+cardShow .8s ease forwards;
 
 
 }
@@ -395,14 +338,14 @@ body {
 .card:hover {
 
 
-    transform:translateY(-8px);
+transform:translateY(-8px);
 
 
-    box-shadow:
+box-shadow:
 
-    0 20px 50px
+0 20px 50px
 
-    rgba(255,183,0,.2);
+rgba(255,183,0,.2);
 
 
 }
@@ -411,19 +354,48 @@ body {
 
 
 
+@keyframes cardShow {
+
+
+from {
+
+opacity:0;
+
+transform:translateY(30px);
+
+}
+
+
+to {
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+
+}
+
+
+
+
+
+
+
 /* ================================
-   Balance
+   BALANCE
 ================================ */
 
 
 .balance-title {
 
 
-    color:#bdbdbd;
+color:#aaa;
 
-    font-size:15px;
+font-size:15px;
 
-    margin-bottom:15px;
+margin-bottom:15px;
 
 
 }
@@ -433,11 +405,11 @@ body {
 .balance {
 
 
-    font-size:52px;
+font-size:52px;
 
-    font-weight:800;
+font-weight:800;
 
-    color:#ffb700;
+color:#ffb700;
 
 
 }
@@ -447,7 +419,8 @@ body {
 .currency {
 
 
-    font-size:18px;
+font-size:18px;
+
 
 }
 
@@ -455,21 +428,23 @@ body {
 
 
 
+
+
 /* ================================
-   Owner
+   OWNER
 ================================ */
 
 
 .owner {
 
 
-    display:flex;
+display:flex;
 
-    flex-direction:column;
+flex-direction:column;
 
-    justify-content:center;
+justify-content:center;
 
-    gap:12px;
+gap:12px;
 
 
 }
@@ -479,9 +454,9 @@ body {
 .owner-name {
 
 
-    font-size:28px;
+font-size:28px;
 
-    font-weight:700;
+font-weight:700;
 
 
 }
@@ -490,35 +465,36 @@ body {
 
 
 
+
 /* ================================
-   Wallet
+   WALLET
 ================================ */
 
 
 .wallet-address {
 
 
-    margin-top:20px;
+margin-top:20px;
 
 
-    padding:15px;
+padding:15px;
 
 
-    border-radius:12px;
+background:
+
+rgba(0,0,0,.35);
 
 
-    background:
-
-    rgba(0,0,0,.35);
+border-radius:12px;
 
 
-    color:#cccccc;
+color:#ccc;
 
 
-    font-size:14px;
+word-break:break-all;
 
 
-    word-break:break-all;
+font-size:14px;
 
 
 }
@@ -527,19 +503,21 @@ body {
 
 
 
+
+
 /* ================================
-   Buttons
+   BUTTONS
 ================================ */
 
 
 .buttons {
 
 
-    display:flex;
+display:flex;
 
-    gap:15px;
+gap:15px;
 
-    margin-top:25px;
+margin-top:25px;
 
 
 }
@@ -550,26 +528,25 @@ body {
 .btn {
 
 
-    padding:13px 22px;
+padding:13px 22px;
 
 
-    border-radius:12px;
+border-radius:12px;
 
 
-    border:none;
+border:none;
 
 
-    cursor:pointer;
+cursor:pointer;
 
 
-    font-weight:600;
+font-weight:600;
 
 
-    transition:.3s;
+transition:.3s;
 
 
 }
-
 
 
 
@@ -577,16 +554,16 @@ body {
 .btn-primary {
 
 
-    background:
+background:
 
-    linear-gradient(
-        135deg,
-        #ffb700,
-        #ff7a00
-    );
+linear-gradient(
+135deg,
+#ffb700,
+#ff7a00
+);
 
 
-    color:white;
+color:white;
 
 
 }
@@ -594,20 +571,21 @@ body {
 
 
 
+
 .btn-secondary {
 
 
-    background:
+background:
 
-    rgba(255,255,255,.12);
-
-
-    border:
-
-    1px solid rgba(255,255,255,.2);
+rgba(255,255,255,.12);
 
 
-    color:white;
+color:white;
+
+
+border:
+
+1px solid rgba(255,255,255,.2);
 
 
 }
@@ -619,7 +597,7 @@ body {
 .btn:hover {
 
 
-    transform:translateY(-3px);
+transform:translateY(-3px);
 
 
 }
@@ -628,132 +606,343 @@ body {
 
 
 
+
+
 /* ================================
-   Floating Bitcoin
+   STATISTICS
+================================ */
+
+
+.card h2 {
+
+
+font-size:20px;
+
+margin-bottom:20px;
+
+
+}
+
+
+
+.stats {
+
+
+display:flex;
+
+flex-direction:column;
+
+gap:18px;
+
+
+}
+
+
+
+.stats div {
+
+
+display:flex;
+
+justify-content:space-between;
+
+
+padding-bottom:12px;
+
+
+border-bottom:
+
+1px solid rgba(255,255,255,.1);
+
+
+}
+
+
+
+.stats span {
+
+
+color:#aaa;
+
+
+}
+
+
+
+.stats strong {
+
+
+color:#ffb700;
+
+
+}
+
+
+
+.security {
+
+
+color:#00ff8c !important;
+
+
+}
+
+
+
+
+
+
+/* ================================
+   ALLOCATION CHART
+================================ */
+
+
+.chart {
+
+
+height:35px;
+
+
+width:100%;
+
+
+background:
+
+rgba(255,255,255,.1);
+
+
+border-radius:50px;
+
+
+overflow:hidden;
+
+
+}
+
+
+
+.btc-fill {
+
+
+height:100%;
+
+
+width:100%;
+
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+
+font-weight:700;
+
+
+background:
+
+linear-gradient(
+90deg,
+#ffb700,
+#ff7a00
+);
+
+
+animation:
+
+chartLoad 1.5s ease;
+
+
+}
+
+
+
+
+@keyframes chartLoad {
+
+
+from {
+
+width:0;
+
+}
+
+
+to {
+
+width:100%;
+
+}
+
+
+}
+
+
+
+
+
+
+
+/* ================================
+   SYSTEM STATUS
+================================ */
+
+
+.network span {
+
+
+color:#00ff8c;
+
+
+font-weight:700;
+
+
+}
+
+
+
+
+
+#syncTime {
+
+
+display:block;
+
+margin:15px 0;
+
+
+color:#ffb700;
+
+
+}
+
+
+
+
+
+
+/* ================================
+   FLOATING BITCOIN
 ================================ */
 
 
 .floating-bitcoin {
 
 
-    position:fixed;
+position:fixed;
 
 
-    right:40px;
+right:40px;
 
-    bottom:40px;
-
-
-    width:75px;
-
-    height:75px;
+bottom:40px;
 
 
-    display:flex;
+width:75px;
 
-    justify-content:center;
-
-    align-items:center;
+height:75px;
 
 
-    border-radius:50%;
+display:flex;
+
+align-items:center;
+
+justify-content:center;
 
 
-    font-size:45px;
+border-radius:50%;
 
 
-    font-weight:800;
+font-size:45px;
+
+font-weight:800;
 
 
-    background:
+background:
 
-    linear-gradient(
-        135deg,
-        #ffb700,
-        #ff7a00
-    );
-
-
-    box-shadow:
-
-    0 0 40px rgba(255,183,0,.5);
+linear-gradient(
+135deg,
+#ffb700,
+#ff7a00
+);
 
 
-    animation:
+box-shadow:
 
-    floatBitcoin 4s ease-in-out infinite;
+0 0 40px rgba(255,183,0,.5);
+
+
+animation:
+
+float 4s infinite;
+
+
+}
+
+
+
+
+@keyframes float {
+
+
+50% {
+
+transform:translateY(-20px);
+
+}
 
 
 }
 
 
-
-@keyframes floatBitcoin {
-
-
-    50% {
-
-        transform:translateY(-20px);
-
-    }
-
-
-}
 
 
 
 
 
 /* ================================
-   Toast
+   TOAST
 ================================ */
 
 
 .toast {
 
 
-    position:fixed;
+position:fixed;
 
 
-    bottom:30px;
+bottom:30px;
 
 
-    left:50%;
+left:50%;
 
 
-    transform:
+transform:
 
-    translateX(-50%)
+translateX(-50%)
 
-    translateY(100px);
-
-
-    padding:15px 25px;
+translateY(100px);
 
 
-    border-radius:50px;
+opacity:0;
 
 
-    background:
-
-    rgba(20,20,20,.9);
+padding:15px 25px;
 
 
-    border:
-
-    1px solid rgba(255,255,255,.15);
+border-radius:50px;
 
 
-    backdrop-filter:blur(15px);
+background:
+
+rgba(20,20,20,.9);
 
 
-    opacity:0;
-
-
-    transition:.4s;
+transition:.4s;
 
 
 }
+
 
 
 
@@ -761,14 +950,14 @@ body {
 .toast.show {
 
 
-    opacity:1;
+opacity:1;
 
 
-    transform:
+transform:
 
-    translateX(-50%)
+translateX(-50%)
 
-    translateY(0);
+translateY(0);
 
 
 }
@@ -777,8 +966,57 @@ body {
 
 
 
+
 /* ================================
-   Mobile
+   FOOTER
+================================ */
+
+
+.footer {
+
+
+margin-top:40px;
+
+
+padding:25px;
+
+
+text-align:center;
+
+
+color:#aaa;
+
+
+font-size:14px;
+
+
+border-top:
+
+1px solid rgba(255,255,255,.1);
+
+
+}
+
+
+
+
+
+.footer p {
+
+
+margin:8px;
+
+
+}
+
+
+
+
+
+
+
+/* ================================
+   MOBILE
 ================================ */
 
 
@@ -787,7 +1025,7 @@ body {
 
 body {
 
-    padding:15px;
+padding:15px;
 
 }
 
@@ -796,21 +1034,11 @@ body {
 .header {
 
 
-    flex-direction:column;
+flex-direction:column;
 
-    align-items:flex-start;
+align-items:flex-start;
 
-    gap:20px;
-
-
-}
-
-
-
-.header h1 {
-
-
-    font-size:22px;
+gap:20px;
 
 
 }
@@ -820,7 +1048,7 @@ body {
 .balance {
 
 
-    font-size:40px;
+font-size:40px;
 
 
 }
@@ -830,7 +1058,7 @@ body {
 .buttons {
 
 
-    flex-direction:column;
+flex-direction:column;
 
 
 }
@@ -840,7 +1068,7 @@ body {
 .btn {
 
 
-    width:100%;
+width:100%;
 
 
 }
@@ -850,17 +1078,17 @@ body {
 .floating-bitcoin {
 
 
-    width:60px;
+width:60px;
 
-    height:60px;
-
-
-    font-size:35px;
+height:60px;
 
 
-    right:20px;
+font-size:35px;
 
-    bottom:20px;
+
+right:20px;
+
+bottom:20px;
 
 
 }
