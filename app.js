@@ -1,6 +1,6 @@
 /* ===================================
    Bitcoin Vault Dashboard
-   Milestone 2 JavaScript
+   Milestone 3 JavaScript
 =================================== */
 
 
@@ -10,29 +10,38 @@
 ================================ */
 
 
-const balanceElement = document.querySelector(".balance");
+const balanceElement =
+document.querySelector(".balance");
 
 
-if (balanceElement) {
+if(balanceElement){
 
 
-    const targetBalance = 41.87;
-
-    let currentBalance = 0;
-
-
-    const counter = setInterval(() => {
+    const target =
+    41.87;
 
 
-        currentBalance += 0.25;
+    let current =
+    0;
 
 
-        if (currentBalance >= targetBalance) {
+
+    const timer =
+    setInterval(()=>{
 
 
-            currentBalance = targetBalance;
+        current += 0.25;
 
-            clearInterval(counter);
+
+
+        if(current >= target){
+
+
+            current =
+            target;
+
+
+            clearInterval(timer);
 
 
         }
@@ -40,11 +49,12 @@ if (balanceElement) {
 
 
         balanceElement.textContent =
-            currentBalance.toFixed(2);
+        current.toFixed(2);
 
 
 
-    }, 40);
+    },40);
+
 
 
 }
@@ -55,7 +65,7 @@ if (balanceElement) {
 
 
 /* ================================
-   Copy Wallet + Toast
+   Wallet Copy System
 ================================ */
 
 
@@ -73,26 +83,34 @@ document.querySelector("#toast");
 
 
 
-function showToast(message) {
+function showToast(message){
 
 
-    if (!toast) return;
-
-
-    toast.textContent = message;
-
-
-    toast.classList.add("show");
+    if(!toast)
+    return;
 
 
 
-    setTimeout(() => {
+    toast.textContent =
+    message;
 
 
-        toast.classList.remove("show");
+
+    toast.classList.add(
+        "show"
+    );
 
 
-    }, 2500);
+
+    setTimeout(()=>{
+
+
+        toast.classList.remove(
+            "show"
+        );
+
+
+    },2500);
 
 
 }
@@ -101,73 +119,62 @@ function showToast(message) {
 
 
 
-if (copyButton && walletAddress) {
+if(copyButton && walletAddress){
+
+
+copyButton.addEventListener(
+"click",
+async()=>{
+
+
+try{
+
+
+await navigator.clipboard.writeText(
+walletAddress.textContent
+);
 
 
 
-    copyButton.addEventListener(
-        "click",
-        async () => {
+copyButton.textContent =
+"Copied ✓";
 
 
 
-        try {
-
-
-            await navigator.clipboard.writeText(
-                walletAddress.textContent
-            );
+showToast(
+"Wallet address copied"
+);
 
 
 
-            copyButton.textContent =
-                "Copied ✓";
+setTimeout(()=>{
+
+
+copyButton.textContent =
+"Copy Wallet";
+
+
+},2000);
 
 
 
-            copyButton.style.background =
-                "#00c853";
+}
 
 
 
-            showToast(
-                "Wallet address copied"
-            );
+catch(error){
+
+
+showToast(
+"Copy failed"
+);
+
+
+}
 
 
 
-            setTimeout(() => {
-
-
-                copyButton.textContent =
-                    "Copy Wallet";
-
-
-                copyButton.style.background =
-                    "";
-
-
-            },2000);
-
-
-
-        }
-
-
-        catch(error) {
-
-
-            showToast(
-                "Copy failed"
-            );
-
-
-        }
-
-
-
-    });
-
+});
 
 
 }
@@ -179,73 +186,233 @@ if (copyButton && walletAddress) {
 
 
 /* ================================
-   Dynamic Card Glow Effect
+   Synchronization Time
 ================================ */
 
 
+const syncTime =
+document.querySelector("#syncTime");
+
+
+
+if(syncTime){
+
+
+function updateSync(){
+
+
+const now =
+new Date();
+
+
+
+syncTime.textContent =
+now.toLocaleString();
+
+
+
+}
+
+
+
+updateSync();
+
+
+setInterval(
+updateSync,
+60000
+);
+
+
+
+}
+
+
+
+
+
+
+/* ================================
+   Security Score Animation
+================================ */
+
+
+const security =
+document.querySelector(".security");
+
+
+
+if(security){
+
+
+let score =
+0;
+
+
+const target =
+98;
+
+
+
+const securityTimer =
+setInterval(()=>{
+
+
+score++;
+
+
+
+security.textContent =
+score + "%";
+
+
+
+if(score >= target){
+
+
+clearInterval(
+securityTimer
+);
+
+
+}
+
+
+
+},20);
+
+
+
+}
+
+
+
+
+
+
+
+
+/* ================================
+   Statistics Counter Animation
+================================ */
+
+
+const statistics =
+document.querySelectorAll(
+".stats strong"
+);
+
+
+
+statistics.forEach(item=>{
+
+
+item.style.transition =
+"0.5s";
+
+
+item.addEventListener(
+"mouseenter",
+()=>{
+
+
+item.style.transform =
+"scale(1.08)";
+
+
+});
+
+
+item.addEventListener(
+"mouseleave",
+()=>{
+
+
+item.style.transform =
+"scale(1)";
+
+
+});
+
+
+});
+
+
+
+
+
+
+
+
+/* ================================
+   Card Dynamic Glow
+================================ */
+
 
 const cards =
-document.querySelectorAll(".card");
+document.querySelectorAll(
+".card"
+);
 
 
 
-cards.forEach(card => {
+cards.forEach(card=>{
+
+
+card.addEventListener(
+"mousemove",
+(event)=>{
+
+
+const rect =
+card.getBoundingClientRect();
 
 
 
-    card.addEventListener(
-        "mousemove",
-        (event) => {
+const x =
+event.clientX -
+rect.left;
 
 
 
-        const rect =
-        card.getBoundingClientRect();
+const y =
+event.clientY -
+rect.top;
 
 
 
-        const x =
-        event.clientX - rect.left;
+card.style.background = `
+
+radial-gradient(
+
+circle at ${x}px ${y}px,
+
+rgba(255,183,0,.20),
+
+rgba(255,255,255,.08)
+
+)
+
+`;
 
 
 
-        const y =
-        event.clientY - rect.top;
-
-
-
-        card.style.background = `
-
-        radial-gradient(
-
-            circle at ${x}px ${y}px,
-
-            rgba(255,183,0,0.20),
-
-            rgba(255,255,255,0.08)
-
-        )
-
-        `;
-
-
-
-    });
+});
 
 
 
 
 
-    card.addEventListener(
-        "mouseleave",
-        () => {
+card.addEventListener(
+"mouseleave",
+()=>{
 
 
-        card.style.background =
-        "rgba(255,255,255,0.08)";
+card.style.background =
+"rgba(255,255,255,.08)";
 
 
-    });
+});
 
 
 
@@ -256,8 +423,10 @@ cards.forEach(card => {
 
 
 
+
+
 /* ================================
-   Blockchain Status Animation
+   Blockchain Pulse
 ================================ */
 
 
@@ -269,17 +438,20 @@ document.querySelector(".status");
 if(status){
 
 
-    setInterval(() => {
+setInterval(()=>{
 
 
-        status.style.opacity =
-        status.style.opacity === "0.7"
-        ? "1"
-        : "0.7";
+status.style.opacity =
+status.style.opacity === "0.6"
+?
+"1"
+:
+"0.6";
 
 
 
-    },2000);
+},2000);
+
 
 
 }
@@ -290,8 +462,9 @@ if(status){
 
 
 
+
 /* ================================
-   Page Loaded Effect
+   Page Ready
 ================================ */
 
 
@@ -300,9 +473,9 @@ window.addEventListener(
 ()=>{
 
 
-    document.body.classList.add(
-        "loaded"
-    );
+document.body.classList.add(
+"loaded"
+);
 
 
 });
