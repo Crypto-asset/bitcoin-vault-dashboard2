@@ -167,6 +167,8 @@ particleMove linear infinite;
 
 
 
+
+
 @keyframes particleMove {
 
 
@@ -210,6 +212,8 @@ margin:auto;
 
 
 }
+
+
 
 
 
@@ -337,6 +341,7 @@ box-shadow:
 
 
 
+
 .header h1 {
 
 
@@ -357,6 +362,7 @@ font-size:14px;
 
 
 }
+
 
 
 
@@ -438,6 +444,8 @@ box-shadow:
 
 
 
+
+
 /* ================================
    Cards
 ================================ */
@@ -462,6 +470,8 @@ gap:25px;
 
 
 }
+
+
 
 
 
@@ -505,6 +515,8 @@ cardEntrance .8s ease forwards;
 
 
 
+
+
 @keyframes cardEntrance {
 
 
@@ -531,6 +543,7 @@ transform:translateY(0);
 
 
 
+
 .card:hover {
 
 
@@ -553,6 +566,8 @@ rgba(255,183,0,.5);
 
 
 }
+
+
 
 
 
@@ -611,6 +626,7 @@ font-size:18px;
 
 
 
+
 /* ================================
    Wallet
 ================================ */
@@ -646,6 +662,8 @@ word-break:break-all;
 
 
 
+
+
 .buttons {
 
 
@@ -659,6 +677,8 @@ margin-top:25px;
 
 
 }
+
+
 
 
 
@@ -689,6 +709,8 @@ transition:.3s;
 
 
 
+
+
 .btn-primary {
 
 
@@ -706,6 +728,8 @@ color:white;
 
 
 }
+
+
 
 
 
@@ -731,6 +755,74 @@ border:
 
 
 
+
+
+
+/* ================================
+   WhatsApp Button
+================================ */
+
+
+.btn-whatsapp {
+
+
+background:
+
+
+linear-gradient(
+135deg,
+#25D366,
+#128C7E
+);
+
+
+color:white;
+
+
+text-decoration:none;
+
+
+display:inline-flex;
+
+
+align-items:center;
+
+
+justify-content:center;
+
+
+border:
+
+
+1px solid rgba(255,255,255,.2);
+
+
+}
+
+
+
+
+
+.btn-whatsapp:hover {
+
+
+transform:translateY(-4px);
+
+
+box-shadow:
+
+
+0 10px 25px rgba(37,211,102,.35);
+
+
+}
+
+
+
+
+
+
+
 .btn:hover {
 
 
@@ -738,6 +830,8 @@ transform:translateY(-4px);
 
 
 }
+
+
 
 
 
@@ -763,6 +857,7 @@ font-size:20px;
 
 
 
+
 .stats {
 
 
@@ -776,6 +871,7 @@ gap:18px;
 
 
 }
+
 
 
 
@@ -802,6 +898,8 @@ border-bottom:
 
 
 
+
+
 .stats span {
 
 
@@ -809,6 +907,8 @@ color:#aaa;
 
 
 }
+
+
 
 
 
@@ -822,6 +922,8 @@ color:#ffb700;
 
 
 
+
+
 .security {
 
 
@@ -829,6 +931,9 @@ color:#00ff8c!important;
 
 
 }
+
+
+
 
 
 
@@ -859,6 +964,8 @@ overflow:hidden;
 
 
 }
+
+
 
 
 
@@ -894,6 +1001,8 @@ linear-gradient(
 
 
 }
+
+
 
 
 
@@ -969,6 +1078,7 @@ floatBitcoin 4s infinite;
 
 
 
+
 @keyframes floatBitcoin {
 
 
@@ -980,6 +1090,8 @@ transform:translateY(-20px);
 
 
 }
+
+
 
 
 
@@ -1036,6 +1148,7 @@ transition:.4s;
 
 
 
+
 .toast.show {
 
 
@@ -1052,6 +1165,9 @@ translateY(0);
 
 
 }
+
+
+
 
 
 
@@ -1094,6 +1210,8 @@ border-top:
 
 
 
+
+
 /* ================================
    Mobile
 ================================ */
@@ -1126,6 +1244,7 @@ gap:20px;
 
 
 
+
 .balance {
 
 
@@ -1133,6 +1252,7 @@ font-size:40px;
 
 
 }
+
 
 
 
@@ -1146,6 +1266,7 @@ flex-direction:column;
 
 
 
+
 .btn {
 
 
@@ -1153,6 +1274,8 @@ width:100%;
 
 
 }
+
+
 
 
 
