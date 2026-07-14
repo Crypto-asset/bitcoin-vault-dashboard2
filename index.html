@@ -3,15 +3,15 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Bitcoin Vault Dashboard</title>
+<title>Bitcoin Vault Dashboard</title>
 
-    <meta name="description" content="Premium Bitcoin portfolio dashboard showing wallet balance and blockchain connection status.">
+<meta name="description" content="Professional Bitcoin portfolio dashboard.">
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -22,160 +22,327 @@
 <div class="dashboard">
 
 
-    <!-- Header -->
 
-    <header class="header">
+<header class="header">
 
 
-        <div class="logo-area">
+<div class="logo-area">
 
-            <div class="logo">
-                ₿
-            </div>
+<div class="logo">
+₿
+</div>
 
 
-            <div>
+<div>
 
-                <h1>
-                    Bitcoin Vault
-                </h1>
+<h1>
+Bitcoin Vault
+</h1>
 
-                <p>
-                    Digital Asset Management Dashboard
-                </p>
+<p>
+Digital Asset Management Dashboard
+</p>
 
-            </div>
+</div>
 
-        </div>
 
+</div>
 
 
-        <div class="status">
 
-            <span class="status-dot"></span>
+<div class="status">
 
-            Blockchain Connected
+<span class="status-dot"></span>
 
-        </div>
+Blockchain Connected
 
+</div>
 
-    </header>
 
+</header>
 
 
 
-    <!-- Dashboard Cards -->
 
-    <main class="cards">
 
 
+<main class="cards">
 
-        <!-- Portfolio Card -->
 
-        <section class="card">
 
+<!-- Balance -->
 
-            <p class="balance-title">
-                Total Portfolio Balance
-            </p>
+<section class="card">
 
 
-            <div class="balance">
-                0.00
-            </div>
+<p class="balance-title">
+Total Portfolio Balance
+</p>
 
 
-            <span class="currency">
-                BTC
-            </span>
+<div class="balance">
+0.00
+</div>
 
 
-        </section>
+<span class="currency">
+BTC
+</span>
 
 
+</section>
 
 
 
-        <!-- Owner Card -->
 
-        <section class="card owner">
 
 
-            <p class="balance-title">
-                Wallet Owner
-            </p>
+<!-- Owner -->
 
 
-            <div class="owner-name">
-                Dario Pietropaoli
-            </div>
+<section class="card owner">
 
 
-            <p>
-                Premium Bitcoin Holder
-            </p>
+<p class="balance-title">
+Wallet Owner
+</p>
 
 
-        </section>
+<div class="owner-name">
+Dario Pietropaoli
+</div>
 
 
+<p>
+Premium Bitcoin Holder
+</p>
 
 
+</section>
 
 
 
-        <!-- Wallet Card -->
 
-        <section class="card">
 
 
-            <p class="balance-title">
-                Wallet Information
-            </p>
 
+<!-- Wallet -->
 
 
-            <div 
-            id="walletAddress"
-            class="wallet-address">
+<section class="card">
 
-                bc1qexamplewalletaddress123456789
 
-            </div>
+<p class="balance-title">
+Wallet Information
+</p>
 
 
 
+<div id="walletAddress" class="wallet-address">
 
-            <div class="buttons">
+bc1qexamplewalletaddress123456789
 
+</div>
 
-                <button 
-                id="copyWallet"
-                class="btn btn-primary">
 
-                    Copy Wallet
 
-                </button>
+<div class="buttons">
 
 
+<button id="copyWallet" class="btn btn-primary">
 
-                <button 
-                class="btn btn-secondary">
+Copy Wallet
 
-                    Share
+</button>
 
-                </button>
 
 
-            </div>
+<button class="btn btn-secondary">
 
+Share
 
+</button>
 
-        </section>
 
+</div>
 
 
-    </main>
+</section>
+
+
+
+
+
+
+
+
+
+<!-- Statistics -->
+
+
+<section class="card">
+
+
+<h2>
+Portfolio Statistics
+</h2>
+
+
+
+<div class="stats">
+
+
+<div>
+
+<span>
+BTC Value
+</span>
+
+<strong>
+41.87 BTC
+</strong>
+
+</div>
+
+
+
+<div>
+
+<span>
+Network
+</span>
+
+<strong>
+Bitcoin Mainnet
+</strong>
+
+</div>
+
+
+
+<div>
+
+<span>
+Security Score
+</span>
+
+<strong class="security">
+98%
+</strong>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- Allocation Chart -->
+
+
+<section class="card">
+
+
+<h2>
+Portfolio Allocation
+</h2>
+
+
+
+<div class="chart">
+
+
+<div class="btc-fill">
+
+100% BTC
+
+</div>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- Sync -->
+
+
+<section class="card">
+
+
+<h2>
+System Status
+</h2>
+
+
+
+<p>
+Last Synchronization:
+</p>
+
+
+<strong id="syncTime">
+
+Loading...
+
+</strong>
+
+
+
+<p class="network">
+
+Network Status:
+<span>
+Online
+</span>
+</p>
+
+
+
+</section>
+
+
+
+
+</main>
+
+
+
+
+
+
+<footer class="footer">
+
+
+<p>
+© 2026 Bitcoin Vault Dashboard
+</p>
+
+
+<p>
+Secure • Decentralized • Blockchain Powered
+</p>
+
+
+</footer>
+
 
 
 
@@ -184,30 +351,20 @@
 
 
 
-
-
-<!-- Floating Bitcoin -->
 
 <div class="floating-bitcoin">
 
-    ₿
+₿
 
 </div>
 
 
-
-
-
-
-<!-- Toast Notification -->
 
 <div id="toast" class="toast">
 
-    Wallet copied successfully
+Wallet copied successfully
 
 </div>
-
-
 
 
 
