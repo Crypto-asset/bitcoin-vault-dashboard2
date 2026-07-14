@@ -1,59 +1,124 @@
 /* ===================================
    Bitcoin Vault Dashboard
-   Milestone 3 JavaScript
+   Milestone 4 Final JavaScript
 =================================== */
 
 
 
 /* ================================
-   Animated BTC Counter
+   Particle Background
 ================================ */
 
 
-const balanceElement =
+const particleContainer =
+document.querySelector("#particles");
+
+
+
+if(particleContainer){
+
+
+    const particleCount = 45;
+
+
+    for(let i = 0; i < particleCount; i++){
+
+
+        const particle =
+        document.createElement("div");
+
+
+        particle.className =
+        "particle";
+
+
+
+        particle.style.left =
+        Math.random() * 100 + "%";
+
+
+
+        particle.style.animationDuration =
+        (5 + Math.random() * 10) + "s";
+
+
+
+        particle.style.animationDelay =
+        Math.random() * 5 + "s";
+
+
+
+        particle.style.opacity =
+        Math.random();
+
+
+
+        particleContainer.appendChild(
+            particle
+        );
+
+
+    }
+
+
+}
+
+
+
+
+
+
+
+/* ================================
+   BTC Counter
+================================ */
+
+
+const balance =
 document.querySelector(".balance");
 
 
-if(balanceElement){
+
+if(balance){
 
 
     const target =
     41.87;
 
 
-    let current =
+    let value =
     0;
 
 
 
-    const timer =
+    const counter =
     setInterval(()=>{
 
 
-        current += 0.25;
+        value += .18;
 
 
 
-        if(current >= target){
+        if(value >= target){
 
 
-            current =
+            value =
             target;
 
 
-            clearInterval(timer);
+            clearInterval(counter);
 
 
         }
 
 
 
-        balanceElement.textContent =
-        current.toFixed(2);
+        balance.textContent =
+        value.toFixed(2);
 
 
 
-    },40);
+    },35);
 
 
 
@@ -64,22 +129,15 @@ if(balanceElement){
 
 
 
+
+
 /* ================================
-   Wallet Copy System
+   Toast System
 ================================ */
-
-
-const copyButton =
-document.querySelector("#copyWallet");
-
-
-const walletAddress =
-document.querySelector("#walletAddress");
 
 
 const toast =
 document.querySelector("#toast");
-
 
 
 
@@ -113,13 +171,30 @@ function showToast(message){
     },2500);
 
 
+
 }
 
 
 
 
 
-if(copyButton && walletAddress){
+
+
+/* ================================
+   Copy Wallet
+================================ */
+
+
+const copyButton =
+document.querySelector("#copyWallet");
+
+
+const wallet =
+document.querySelector("#walletAddress");
+
+
+
+if(copyButton && wallet){
 
 
 copyButton.addEventListener(
@@ -131,7 +206,7 @@ try{
 
 
 await navigator.clipboard.writeText(
-walletAddress.textContent
+wallet.textContent
 );
 
 
@@ -190,24 +265,22 @@ showToast(
 ================================ */
 
 
-const syncTime =
+const sync =
 document.querySelector("#syncTime");
 
 
 
-if(syncTime){
+function updateTime(){
 
 
-function updateSync(){
-
-
-const now =
-new Date();
+if(!sync)
+return;
 
 
 
-syncTime.textContent =
-now.toLocaleString();
+sync.textContent =
+new Date()
+.toLocaleString();
 
 
 
@@ -215,17 +288,14 @@ now.toLocaleString();
 
 
 
-updateSync();
+updateTime();
 
 
 setInterval(
-updateSync,
+updateTime,
 60000
 );
 
-
-
-}
 
 
 
@@ -233,7 +303,7 @@ updateSync,
 
 
 /* ================================
-   Security Score Animation
+   Security Score
 ================================ */
 
 
@@ -245,16 +315,14 @@ document.querySelector(".security");
 if(security){
 
 
-let score =
-0;
+let score = 0;
 
 
-const target =
-98;
+const target = 98;
 
 
 
-const securityTimer =
+const securityAnimation =
 setInterval(()=>{
 
 
@@ -271,7 +339,7 @@ if(score >= target){
 
 
 clearInterval(
-securityTimer
+securityAnimation
 );
 
 
@@ -279,12 +347,11 @@ securityTimer
 
 
 
-},20);
+},18);
 
 
 
 }
-
 
 
 
@@ -293,66 +360,12 @@ securityTimer
 
 
 /* ================================
-   Statistics Counter Animation
-================================ */
-
-
-const statistics =
-document.querySelectorAll(
-".stats strong"
-);
-
-
-
-statistics.forEach(item=>{
-
-
-item.style.transition =
-"0.5s";
-
-
-item.addEventListener(
-"mouseenter",
-()=>{
-
-
-item.style.transform =
-"scale(1.08)";
-
-
-});
-
-
-item.addEventListener(
-"mouseleave",
-()=>{
-
-
-item.style.transform =
-"scale(1)";
-
-
-});
-
-
-});
-
-
-
-
-
-
-
-
-/* ================================
-   Card Dynamic Glow
+   Premium Card Glow
 ================================ */
 
 
 const cards =
-document.querySelectorAll(
-".card"
-);
+document.querySelectorAll(".card");
 
 
 
@@ -361,7 +374,7 @@ cards.forEach(card=>{
 
 card.addEventListener(
 "mousemove",
-(event)=>{
+(e)=>{
 
 
 const rect =
@@ -370,14 +383,11 @@ card.getBoundingClientRect();
 
 
 const x =
-event.clientX -
-rect.left;
-
+e.clientX - rect.left;
 
 
 const y =
-event.clientY -
-rect.top;
+e.clientY - rect.top;
 
 
 
@@ -387,7 +397,7 @@ radial-gradient(
 
 circle at ${x}px ${y}px,
 
-rgba(255,183,0,.20),
+rgba(255,183,0,.22),
 
 rgba(255,255,255,.08)
 
@@ -398,7 +408,6 @@ rgba(255,255,255,.08)
 
 
 });
-
 
 
 
@@ -426,7 +435,7 @@ card.style.background =
 
 
 /* ================================
-   Blockchain Pulse
+   Blockchain Status Pulse
 ================================ */
 
 
@@ -441,16 +450,22 @@ if(status){
 setInterval(()=>{
 
 
-status.style.opacity =
-status.style.opacity === "0.6"
-?
-"1"
-:
-"0.6";
+status.style.transform =
+"scale(1.03)";
+
+
+setTimeout(()=>{
+
+
+status.style.transform =
+"scale(1)";
+
+
+},300);
 
 
 
-},2000);
+},3000);
 
 
 
@@ -462,9 +477,8 @@ status.style.opacity === "0.6"
 
 
 
-
 /* ================================
-   Page Ready
+   Page Loaded
 ================================ */
 
 
@@ -474,7 +488,7 @@ window.addEventListener(
 
 
 document.body.classList.add(
-"loaded"
+"ready"
 );
 
 
