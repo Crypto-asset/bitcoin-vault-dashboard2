@@ -1,7 +1,17 @@
 /* ===================================
    Bitcoin Vault Dashboard
-   Milestone 4 Final JavaScript
+   Live Blockchain Wallet Edition
 =================================== */
+
+
+/* ================================
+   Wallet Configuration
+================================ */
+
+const walletAddress =
+"bc1qamgjuxaywqls56h7rg7afga3m6rgqwfkew688k";
+
+
 
 
 
@@ -14,55 +24,42 @@ const particleContainer =
 document.querySelector("#particles");
 
 
-
 if(particleContainer){
 
-
-    const particleCount = 45;
-
-
-    for(let i = 0; i < particleCount; i++){
+const particleCount = 45;
 
 
-        const particle =
-        document.createElement("div");
+for(let i = 0; i < particleCount; i++){
+
+const particle =
+document.createElement("div");
 
 
-        particle.className =
-        "particle";
+particle.className =
+"particle";
 
 
-
-        particle.style.left =
-        Math.random() * 100 + "%";
-
+particle.style.left =
+Math.random()*100+"%";
 
 
-        particle.style.animationDuration =
-        (5 + Math.random() * 10) + "s";
+particle.style.animationDuration =
+(5 + Math.random()*10)+"s";
 
 
-
-        particle.style.animationDelay =
-        Math.random() * 5 + "s";
-
+particle.style.animationDelay =
+Math.random()*5+"s";
 
 
-        particle.style.opacity =
-        Math.random();
+particle.style.opacity =
+Math.random();
 
 
-
-        particleContainer.appendChild(
-            particle
-        );
-
-
-    }
-
+particleContainer.appendChild(particle);
 
 }
 
+}
 
 
 
@@ -70,59 +67,148 @@ if(particleContainer){
 
 
 /* ================================
-   BTC Counter
+   Live Bitcoin Wallet Data
 ================================ */
 
 
-const balance =
-document.querySelector(".balance");
+const walletValue =
+document.querySelector("#walletValue");
+
+
+const btcBalance =
+document.querySelector("#btcBalance");
+
+
+const btcPrice =
+document.querySelector("#btcPrice");
 
 
 
-if(balance){
+
+async function updateWallet(){
 
 
-    const target =
-    41.87;
+try{
 
 
-    let value =
-    0;
+// Get blockchain balance
+
+const balanceResponse =
+await fetch(
+`https://blockchain.info/q/addressbalance/${walletAddress}`
+);
 
 
-
-    const counter =
-    setInterval(()=>{
-
-
-        value += .18;
-
-
-
-        if(value >= target){
-
-
-            value =
-            target;
-
-
-            clearInterval(counter);
-
-
-        }
+const balanceSatoshi =
+await balanceResponse.json();
 
 
 
-        balance.textContent =
-        value.toFixed(2);
+const btc =
+balanceSatoshi / 100000000;
 
 
 
-    },35);
+btcBalance.textContent =
+btc.toFixed(8) + " BTC";
+
+
+
+// Get BTC price
+
+const priceResponse =
+await fetch(
+"https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
+);
+
+
+const priceData =
+await priceResponse.json();
+
+
+
+const price =
+priceData.bitcoin.usd;
+
+
+
+btcPrice.textContent =
+"$" + price.toLocaleString();
+
+
+
+const value =
+btc * price;
+
+
+
+walletValue.classList.add(
+"live-update"
+);
+
+
+
+walletValue.textContent =
+"$" + value.toLocaleString(
+undefined,
+{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+}
+);
+
+
+
+setTimeout(()=>{
+
+walletValue.classList.remove(
+"live-update"
+);
+
+},500);
 
 
 
 }
+
+catch(error){
+
+
+console.error(
+"Wallet update error:",
+error
+);
+
+
+
+btcBalance.textContent =
+"Unavailable";
+
+
+btcPrice.textContent =
+"Unavailable";
+
+
+walletValue.textContent =
+"Error";
+
+
+}
+
+}
+
+
+
+
+
+updateWallet();
+
+
+setInterval(
+updateWallet,
+30000
+);
+
 
 
 
@@ -140,39 +226,39 @@ const toast =
 document.querySelector("#toast");
 
 
-
 function showToast(message){
 
 
-    if(!toast)
-    return;
+if(!toast)
+return;
 
 
 
-    toast.textContent =
-    message;
+toast.textContent =
+message;
 
 
 
-    toast.classList.add(
-        "show"
-    );
+toast.classList.add(
+"show"
+);
 
 
 
-    setTimeout(()=>{
+setTimeout(()=>{
 
 
-        toast.classList.remove(
-            "show"
-        );
+toast.classList.remove(
+"show"
+);
 
 
-    },2500);
-
+},2500);
 
 
 }
+
+
 
 
 
@@ -215,7 +301,6 @@ copyButton.textContent =
 "Copied ✓";
 
 
-
 showToast(
 "Wallet address copied"
 );
@@ -236,7 +321,6 @@ copyButton.textContent =
 }
 
 
-
 catch(error){
 
 
@@ -253,6 +337,8 @@ showToast(
 
 
 }
+
+
 
 
 
@@ -279,9 +365,7 @@ return;
 
 
 sync.textContent =
-new Date()
-.toLocaleString();
-
+new Date().toLocaleString();
 
 
 }
@@ -302,6 +386,8 @@ updateTime,
 
 
 
+
+
 /* ================================
    Security Score
 ================================ */
@@ -309,7 +395,6 @@ updateTime,
 
 const security =
 document.querySelector(".security");
-
 
 
 if(security){
@@ -329,9 +414,8 @@ setInterval(()=>{
 score++;
 
 
-
 security.textContent =
-score + "%";
+score+"%";
 
 
 
@@ -359,6 +443,8 @@ securityAnimation
 
 
 
+
+
 /* ================================
    Premium Card Glow
 ================================ */
@@ -379,7 +465,6 @@ card.addEventListener(
 
 const rect =
 card.getBoundingClientRect();
-
 
 
 const x =
@@ -424,8 +509,8 @@ card.style.background =
 });
 
 
-
 });
+
 
 
 
@@ -443,7 +528,6 @@ const status =
 document.querySelector(".status");
 
 
-
 if(status){
 
 
@@ -452,6 +536,7 @@ setInterval(()=>{
 
 status.style.transform =
 "scale(1.03)";
+
 
 
 setTimeout(()=>{
@@ -468,8 +553,8 @@ status.style.transform =
 },3000);
 
 
-
 }
+
 
 
 
