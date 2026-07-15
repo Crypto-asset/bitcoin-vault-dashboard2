@@ -1,11 +1,11 @@
 /* ===================================
    Bitcoin Vault Dashboard
-   Live Portfolio Value Edition
+   Live BTC Portfolio Edition
 =================================== */
 
 
 /* ================================
-   Portfolio Configuration
+   Portfolio Amount
 ================================ */
 
 const portfolioBTC = 41.87;
@@ -23,12 +23,14 @@ const particleContainer =
 document.querySelector("#particles");
 
 
-if(particleContainer){
+if (particleContainer) {
+
 
     const particleCount = 45;
 
 
-    for(let i = 0; i < particleCount; i++){
+    for (let i = 0; i < particleCount; i++) {
+
 
         const particle =
         document.createElement("div");
@@ -58,7 +60,9 @@ if(particleContainer){
             particle
         );
 
+
     }
+
 
 }
 
@@ -69,8 +73,9 @@ if(particleContainer){
 
 
 
+
 /* ================================
-   Live BTC Portfolio Value
+   Live Bitcoin Price
 ================================ */
 
 
@@ -87,16 +92,15 @@ document.querySelector("#btcPrice");
 
 
 
-
-async function updatePortfolio(){
-
-
-try{
+async function updatePortfolio() {
 
 
-    // Show portfolio BTC amount
+try {
 
-    if(btcBalance){
+
+    // Show BTC amount
+
+    if (btcBalance) {
 
         btcBalance.textContent =
         portfolioBTC.toFixed(2) + " BTC";
@@ -105,13 +109,13 @@ try{
 
 
 
-
-    // Get live Bitcoin price
+    // Get live BTC price
 
     const response =
     await fetch(
-    "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
+        "https://api.coinbase.com/v2/prices/BTC-USD/spot"
     );
+
 
 
     const data =
@@ -119,20 +123,26 @@ try{
 
 
 
-    const currentBTCPrice =
-    data.bitcoin.usd;
+    const currentPrice =
+    Number(data.data.amount);
 
 
 
 
     // Display BTC price
 
-    if(btcPrice){
+    if (btcPrice) {
 
         btcPrice.textContent =
-        "$" + currentBTCPrice.toLocaleString();
+        "$" + currentPrice.toLocaleString(
+            undefined,
+            {
+                maximumFractionDigits:2
+            }
+        );
 
     }
+
 
 
 
@@ -140,17 +150,19 @@ try{
     // Calculate portfolio value
 
     const totalValue =
-    portfolioBTC * currentBTCPrice;
+    portfolioBTC * currentPrice;
 
 
 
 
-    // Display total value
 
-    if(walletValue){
+    // Display portfolio value
+
+    if (walletValue) {
+
 
         walletValue.classList.add(
-        "live-update"
+            "live-update"
         );
 
 
@@ -166,13 +178,16 @@ try{
 
 
 
-        setTimeout(()=>{
+        setTimeout(() => {
+
 
             walletValue.classList.remove(
-            "live-update"
+                "live-update"
             );
 
+
         },500);
+
 
     }
 
@@ -181,21 +196,23 @@ try{
 }
 
 
-catch(error){
+catch(error) {
 
 
     console.error(
-    "Bitcoin price error:",
-    error
+        "BTC price error:",
+        error
     );
+
 
 
     if(walletValue){
 
         walletValue.textContent =
-        "Unavailable";
+        "Price unavailable";
 
     }
+
 
 
     if(btcPrice){
@@ -209,8 +226,9 @@ catch(error){
 }
 
 
-
 }
+
+
 
 
 
@@ -231,7 +249,7 @@ updatePortfolio,
 
 
 /* ================================
-   Toast System
+   Toast
 ================================ */
 
 
@@ -243,31 +261,32 @@ document.querySelector("#toast");
 function showToast(message){
 
 
-    if(!toast)
-    return;
+if(!toast)
+return;
 
 
 
-    toast.textContent =
-    message;
+toast.textContent =
+message;
 
 
 
-    toast.classList.add(
-        "show"
-    );
+toast.classList.add(
+"show"
+);
 
 
 
-    setTimeout(()=>{
+setTimeout(()=>{
 
 
-        toast.classList.remove(
-            "show"
-        );
+toast.classList.remove(
+"show"
+);
 
 
-    },2500);
+},2500);
+
 
 
 }
@@ -374,15 +393,14 @@ document.querySelector("#syncTime");
 function updateTime(){
 
 
-if(!sync)
-return;
-
+if(sync){
 
 
 sync.textContent =
-new Date()
-.toLocaleString();
+new Date().toLocaleString();
 
+
+}
 
 
 }
@@ -425,7 +443,7 @@ const target = 98;
 
 
 
-const securityAnimation =
+const animation =
 setInterval(()=>{
 
 
@@ -440,9 +458,7 @@ score + "%";
 if(score >= target){
 
 
-clearInterval(
-securityAnimation
-);
+clearInterval(animation);
 
 
 }
@@ -464,7 +480,7 @@ securityAnimation
 
 
 /* ================================
-   Premium Card Glow
+   Card Glow Effect
 ================================ */
 
 
@@ -488,7 +504,6 @@ card.getBoundingClientRect();
 
 const x =
 e.clientX - rect.left;
-
 
 
 const y =
@@ -517,7 +532,6 @@ rgba(255,255,255,.08)
 
 
 
-
 card.addEventListener(
 "mouseleave",
 ()=>{
@@ -541,7 +555,7 @@ card.style.background =
 
 
 /* ================================
-   Blockchain Status Pulse
+   Status Pulse
 ================================ */
 
 
@@ -558,7 +572,6 @@ setInterval(()=>{
 
 status.style.transform =
 "scale(1.03)";
-
 
 
 setTimeout(()=>{
@@ -586,7 +599,7 @@ status.style.transform =
 
 
 /* ================================
-   Page Loaded
+   Page Ready
 ================================ */
 
 
@@ -601,52 +614,3 @@ document.body.classList.add(
 
 
 });
-/* ===================================
-   Fix Large Portfolio Value Display
-=================================== */
-
-.balance {
-    font-size: clamp(32px, 4vw, 55px);
-    white-space: nowrap;
-    overflow: visible;
-}
-
-
-#walletValue {
-    width:100%;
-    letter-spacing:-1px;
-}
-
-
-
-/* Give the main balance card more space */
-
-.cards .card:first-child {
-    grid-column: span 2;
-}
-
-
-
-
-/* Keep owner card normal */
-
-.owner {
-    grid-column: span 1;
-}
-
-
-
-
-@media(max-width:700px){
-
-    .cards .card:first-child {
-        grid-column: span 1;
-    }
-
-
-    .balance {
-        white-space:normal;
-        word-break:break-word;
-    }
-
-}
