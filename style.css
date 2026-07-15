@@ -1558,3 +1558,63 @@ color:#ff5d5d!important;
 .wallet-error {
     color: #ff5d5d !important;
 }
+/* ===================================
+   Fix Large Portfolio Balance Width
+=================================== */
+
+.cards {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+
+.cards .card:first-child {
+    min-width: 0;
+}
+
+
+
+#walletValue {
+    font-size: clamp(28px, 4vw, 48px);
+    white-space: nowrap;
+    letter-spacing: -1px;
+}
+
+
+
+.balance {
+    overflow: visible;
+    width: 100%;
+}
+
+
+
+/* Make balance card wider on desktop */
+
+@media(min-width:900px){
+
+    .cards .card:first-child {
+        grid-column: span 2;
+    }
+
+}
+
+
+
+@media(max-width:700px){
+
+    #walletValue {
+
+        font-size:32px;
+        white-space:normal;
+        word-break:break-word;
+
+    }
+
+
+    .cards .card:first-child {
+
+        grid-column:span 1;
+
+    }
+
+}
