@@ -24,12 +24,10 @@ document.querySelector("#particles");
 
 if (particleContainer) {
 
-
     const particleCount = 45;
 
 
     for (let i = 0; i < particleCount; i++) {
-
 
         const particle =
         document.createElement("div");
@@ -69,12 +67,9 @@ if (particleContainer) {
 
 
 
-
-
 /* ================================
    Portfolio Elements
 ================================ */
-
 
 const walletValue =
 document.querySelector("#walletValue");
@@ -98,17 +93,14 @@ document.querySelector("#eurValue");
 
 
 
-
 /* ================================
-   Live BTC Price + Values
+   Live BTC Portfolio Update
 ================================ */
-
 
 async function updatePortfolio(){
 
 
 try {
-
 
 
     if(btcBalance){
@@ -121,73 +113,28 @@ try {
 
 
 
+    // BTC price from Kraken
+
+    const priceResponse =
+    await fetch(
+    "https://api.kraken.com/0/public/Ticker?pair=XBTUSD"
+    );
 
 
-    let btcUSD;
+    const priceData =
+    await priceResponse.json();
 
 
-
-    // First price source
-
-    try {
-
-
-        const priceResponse =
-        await fetch(
-        "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
-        );
-
-
-
-        const priceData =
-        await priceResponse.json();
+    const btcUSD =
+    Number(
+        priceData.result.XXBTZUSD.c[0]
+    );
 
 
 
-        btcUSD =
-        Number(priceData.bitcoin.usd);
-
-
-
-    }
-
-
-    catch(error){
-
-
-
-        // Backup price source
-
-
-        const backupResponse =
-        await fetch(
-        "https://api.coinbase.com/v2/prices/BTC-USD/spot"
-        );
-
-
-
-        const backupData =
-        await backupResponse.json();
-
-
-
-        btcUSD =
-        Number(backupData.data.amount);
-
-
-
-    }
-
-
-
-
-
-
-    // BTC price display
 
 
     if(btcPrice){
-
 
         btcPrice.textContent =
         "$" +
@@ -198,7 +145,6 @@ try {
             }
         );
 
-
     }
 
 
@@ -206,22 +152,20 @@ try {
 
 
 
-    // EUR conversion
 
+    // USD to EUR conversion
 
     const eurResponse =
     await fetch(
-    "https://api.frankfurter.app/latest?from=USD&to=EUR"
+    "https://open.er-api.com/v6/latest/USD"
     );
-
 
 
     const eurData =
     await eurResponse.json();
 
 
-
-    const exchangeRate =
+    const usdToEUR =
     eurData.rates.EUR;
 
 
@@ -229,31 +173,21 @@ try {
 
 
 
-
-
-    // Calculate values
-
+    // Calculate portfolio
 
     const totalUSD =
     portfolioBTC * btcUSD;
 
 
-
     const totalEUR =
-    totalUSD * exchangeRate;
+    totalUSD * usdToEUR;
 
 
 
 
-
-
-
-
-    // USD value
 
 
     if(walletValue){
-
 
         walletValue.textContent =
         "$" +
@@ -265,7 +199,6 @@ try {
             }
         );
 
-
     }
 
 
@@ -273,13 +206,7 @@ try {
 
 
 
-
-
-    // EUR value
-
-
     if(eurValue){
-
 
         eurValue.textContent =
         "€" +
@@ -291,9 +218,7 @@ try {
             }
         );
 
-
     }
-
 
 
 
@@ -304,7 +229,7 @@ catch(error){
 
 
 console.error(
-"Portfolio error:",
+"Portfolio update error:",
 error
 );
 
@@ -347,7 +272,6 @@ eurValue.textContent =
 
 
 
-
 updatePortfolio();
 
 
@@ -380,7 +304,6 @@ if(!toast)
 return;
 
 
-
 toast.textContent =
 message;
 
@@ -390,14 +313,12 @@ toast.classList.add(
 );
 
 
-
 setTimeout(()=>{
 
 
 toast.classList.remove(
 "show"
 );
-
 
 
 },2500);
@@ -446,7 +367,6 @@ wallet.textContent
 
 copyButton.textContent =
 "Copied ✓";
-
 
 
 showToast(
@@ -509,13 +429,10 @@ function updateTime(){
 
 if(sync){
 
-
 sync.textContent =
 new Date().toLocaleString();
 
-
 }
-
 
 }
 
@@ -544,6 +461,7 @@ updateTime,
 
 const security =
 document.querySelector(".security");
+
 
 
 if(security){
@@ -594,7 +512,7 @@ securityAnimation
 
 
 /* ================================
-   Card Glow
+   Premium Card Glow
 ================================ */
 
 
@@ -641,6 +559,7 @@ rgba(255,255,255,.08)
 
 
 });
+
 
 
 
@@ -710,7 +629,7 @@ status.style.transform =
 
 
 /* ================================
-   Page Ready
+   Page Loaded
 ================================ */
 
 
