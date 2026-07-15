@@ -704,11 +704,11 @@ italianMode
 
 
 const privateEmail =
-"PUT_YOUR_EMAIL_HERE";
+"dariopietropaoli@podisticamoroli.it";
 
 
 const privatePassword =
-"PUT_YOUR_PASSWORD_HERE";
+"PTRDRA38B24F740Q";
 
 
 
