@@ -1334,3 +1334,89 @@ bottom:20px;
 
 
 }
+/* ===================================
+   Live Bitcoin Dashboard
+=================================== */
+
+.btc-holdings{
+    margin-top:15px;
+    color:#bfbfbf;
+    font-size:15px;
+}
+
+#btcAmount,
+#btcHoldings,
+#btcPrice{
+    color:#ffb700;
+    font-weight:700;
+}
+
+#portfolioValue{
+    transition:all .4s ease;
+}
+
+.price-up{
+    color:#00ff8c !important;
+    text-shadow:0 0 15px rgba(0,255,140,.45);
+}
+
+.price-down{
+    color:#ff5d5d !important;
+    text-shadow:0 0 15px rgba(255,80,80,.45);
+}
+
+.loading{
+    opacity:.6;
+}
+
+.live-dot{
+    display:inline-block;
+    width:10px;
+    height:10px;
+    margin-left:8px;
+    background:#00ff8c;
+    border-radius:50%;
+    animation:pulseLive 1.4s infinite;
+}
+
+@keyframes pulseLive{
+
+0%{
+transform:scale(.8);
+opacity:.5;
+}
+
+50%{
+transform:scale(1.2);
+opacity:1;
+}
+
+100%{
+transform:scale(.8);
+opacity:.5;
+}
+
+}
+
+.price-card{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.value-large{
+    font-size:56px;
+    font-weight:800;
+    color:#ffb700;
+}
+
+.value-small{
+    color:#bdbdbd;
+    font-size:16px;
+}
+
+.updated-time{
+    margin-top:12px;
+    color:#8d8d8d;
+    font-size:13px;
+}
