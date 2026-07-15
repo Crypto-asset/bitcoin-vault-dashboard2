@@ -13,6 +13,7 @@ const portfolioBTC = 41.87;
 
 
 
+
 /* ================================
    Particle Background
 ================================ */
@@ -68,8 +69,10 @@ if (particleContainer) {
 
 
 
+
+
 /* ================================
-   Live Portfolio Values
+   Portfolio Elements
 ================================ */
 
 
@@ -92,14 +95,21 @@ document.querySelector("#eurValue");
 
 
 
+
+
+
+
+/* ================================
+   Live BTC Price + Values
+================================ */
+
+
 async function updatePortfolio(){
 
 
 try {
 
 
-
-    // BTC amount
 
     if(btcBalance){
 
@@ -110,47 +120,74 @@ try {
 
 
 
-    // BTC price USD
-
-    const priceResponse =
-    await fetch(
-    "https://api.coinbase.com/v2/prices/BTC-USD/spot"
-    );
-
-
-    const priceData =
-    await priceResponse.json();
-
-
-    const btcUSD =
-    Number(priceData.data.amount);
 
 
 
-
-
-    // USD to EUR conversion
-
-    const eurResponse =
-    await fetch(
-    "https://api.frankfurter.app/latest?from=USD&to=EUR"
-    );
-
-
-    const eurData =
-    await eurResponse.json();
-
-
-    const usdToEUR =
-    eurData.rates.EUR;
+    let btcUSD;
 
 
 
+    // First price source
+
+    try {
 
 
-    // Show BTC price
+        const priceResponse =
+        await fetch(
+        "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
+        );
+
+
+
+        const priceData =
+        await priceResponse.json();
+
+
+
+        btcUSD =
+        Number(priceData.bitcoin.usd);
+
+
+
+    }
+
+
+    catch(error){
+
+
+
+        // Backup price source
+
+
+        const backupResponse =
+        await fetch(
+        "https://api.coinbase.com/v2/prices/BTC-USD/spot"
+        );
+
+
+
+        const backupData =
+        await backupResponse.json();
+
+
+
+        btcUSD =
+        Number(backupData.data.amount);
+
+
+
+    }
+
+
+
+
+
+
+    // BTC price display
+
 
     if(btcPrice){
+
 
         btcPrice.textContent =
         "$" +
@@ -161,7 +198,34 @@ try {
             }
         );
 
+
     }
+
+
+
+
+
+
+    // EUR conversion
+
+
+    const eurResponse =
+    await fetch(
+    "https://api.frankfurter.app/latest?from=USD&to=EUR"
+    );
+
+
+
+    const eurData =
+    await eurResponse.json();
+
+
+
+    const exchangeRate =
+    eurData.rates.EUR;
+
+
+
 
 
 
@@ -169,25 +233,26 @@ try {
 
     // Calculate values
 
+
     const totalUSD =
     portfolioBTC * btcUSD;
 
 
+
     const totalEUR =
-    totalUSD * usdToEUR;
+    totalUSD * exchangeRate;
 
 
 
 
 
-    // Show USD value
+
+
+
+    // USD value
+
 
     if(walletValue){
-
-
-        walletValue.classList.add(
-            "live-update"
-        );
 
 
         walletValue.textContent =
@@ -201,15 +266,6 @@ try {
         );
 
 
-
-        setTimeout(()=>{
-
-            walletValue.classList.remove(
-                "live-update"
-            );
-
-        },500);
-
     }
 
 
@@ -217,9 +273,13 @@ try {
 
 
 
-    // Show EUR value
+
+
+    // EUR value
+
 
     if(eurValue){
+
 
         eurValue.textContent =
         "€" +
@@ -230,6 +290,7 @@ try {
                 maximumFractionDigits:2
             }
         );
+
 
     }
 
@@ -243,9 +304,10 @@ catch(error){
 
 
 console.error(
-"Portfolio update error:",
+"Portfolio error:",
 error
 );
+
 
 
 if(walletValue){
@@ -256,12 +318,14 @@ walletValue.textContent =
 }
 
 
+
 if(btcPrice){
 
 btcPrice.textContent =
 "Unavailable";
 
 }
+
 
 
 if(eurValue){
@@ -278,6 +342,9 @@ eurValue.textContent =
 
 
 }
+
+
+
 
 
 
@@ -313,6 +380,7 @@ if(!toast)
 return;
 
 
+
 toast.textContent =
 message;
 
@@ -322,12 +390,14 @@ toast.classList.add(
 );
 
 
+
 setTimeout(()=>{
 
 
 toast.classList.remove(
 "show"
 );
+
 
 
 },2500);
@@ -376,6 +446,7 @@ wallet.textContent
 
 copyButton.textContent =
 "Copied ✓";
+
 
 
 showToast(
@@ -438,10 +509,13 @@ function updateTime(){
 
 if(sync){
 
+
 sync.textContent =
 new Date().toLocaleString();
 
+
 }
+
 
 }
 
@@ -496,11 +570,14 @@ score + "%";
 
 if(score >= target){
 
+
 clearInterval(
 securityAnimation
 );
 
+
 }
+
 
 
 },18);
@@ -598,7 +675,6 @@ const status =
 document.querySelector(".status");
 
 
-
 if(status){
 
 
@@ -634,7 +710,7 @@ status.style.transform =
 
 
 /* ================================
-   Page Loaded
+   Page Ready
 ================================ */
 
 
