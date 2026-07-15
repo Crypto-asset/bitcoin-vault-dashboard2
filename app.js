@@ -698,3 +698,93 @@ italianMode
 
 
 }
+/* ================================
+   Local Private Login
+================================ */
+
+
+const privateEmail =
+"PUT_YOUR_EMAIL_HERE";
+
+
+const privatePassword =
+"PUT_YOUR_PASSWORD_HERE";
+
+
+
+const loginButton =
+document.querySelector("#loginButton");
+
+
+
+const loginMessage =
+document.querySelector("#loginMessage");
+
+
+
+
+if(localStorage.getItem("vaultLogin") === "true"){
+
+document.body.classList.add(
+"logged-in"
+);
+
+}
+
+
+
+
+if(loginButton){
+
+
+loginButton.addEventListener(
+"click",
+()=>{
+
+
+const email =
+document.querySelector("#loginEmail").value;
+
+
+const password =
+document.querySelector("#loginPassword").value;
+
+
+
+
+if(
+email === privateEmail &&
+password === privatePassword
+){
+
+
+localStorage.setItem(
+"vaultLogin",
+"true"
+);
+
+
+
+document.body.classList.add(
+"logged-in"
+);
+
+
+
+}
+
+else{
+
+
+loginMessage.textContent =
+"Incorrect email or password";
+
+
+}
+
+
+
+});
+
+
+}
