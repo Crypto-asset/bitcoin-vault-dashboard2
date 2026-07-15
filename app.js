@@ -601,3 +601,52 @@ document.body.classList.add(
 
 
 });
+/* ===================================
+   Fix Large Portfolio Value Display
+=================================== */
+
+.balance {
+    font-size: clamp(32px, 4vw, 55px);
+    white-space: nowrap;
+    overflow: visible;
+}
+
+
+#walletValue {
+    width:100%;
+    letter-spacing:-1px;
+}
+
+
+
+/* Give the main balance card more space */
+
+.cards .card:first-child {
+    grid-column: span 2;
+}
+
+
+
+
+/* Keep owner card normal */
+
+.owner {
+    grid-column: span 1;
+}
+
+
+
+
+@media(max-width:700px){
+
+    .cards .card:first-child {
+        grid-column: span 1;
+    }
+
+
+    .balance {
+        white-space:normal;
+        word-break:break-word;
+    }
+
+}
