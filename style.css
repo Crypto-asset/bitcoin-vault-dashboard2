@@ -1420,3 +1420,94 @@ opacity:.5;
     color:#8d8d8d;
     font-size:13px;
 }
+/* ===================================
+   Live Wallet Data
+=================================== */
+
+.btc-holdings {
+
+margin-top:15px;
+
+color:#aaa;
+
+font-size:15px;
+
+}
+
+
+#btcBalance {
+
+color:#ffb700;
+
+font-weight:700;
+
+}
+
+
+
+#walletValue {
+
+transition:.4s ease;
+
+}
+
+
+
+#walletValue.loading,
+#btcBalance.loading,
+#btcPrice.loading {
+
+opacity:.6;
+
+}
+
+
+
+.live-update {
+
+animation:valueUpdate .5s ease;
+
+}
+
+
+
+@keyframes valueUpdate {
+
+
+0% {
+
+transform:scale(.95);
+
+opacity:.5;
+
+}
+
+
+100% {
+
+transform:scale(1);
+
+opacity:1;
+
+}
+
+
+}
+
+
+
+#btcPrice {
+
+color:#ffb700;
+
+font-weight:800;
+
+}
+
+
+
+.wallet-error {
+
+color:#ff5d5d!important;
+
+}
