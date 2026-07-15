@@ -644,3 +644,57 @@ document.body.classList.add(
 
 
 });
+/* ================================
+   English / Italian Translator
+================================ */
+
+
+const languageBtn =
+document.querySelector("#languageBtn");
+
+
+let italianMode = false;
+
+
+
+if(languageBtn){
+
+
+languageBtn.addEventListener(
+"click",
+()=>{
+
+
+italianMode =
+!italianMode;
+
+
+
+document.querySelectorAll("[data-en]")
+.forEach(text=>{
+
+
+text.textContent =
+italianMode
+?
+text.dataset.it
+:
+text.dataset.en;
+
+
+});
+
+
+
+languageBtn.textContent =
+italianMode
+?
+"🇬🇧 English"
+:
+"🇮🇹 Italiano";
+
+
+});
+
+
+}
